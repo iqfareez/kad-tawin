@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('head')
-    <meta property="og:title" content="Kad Kahwin Fareez & Najwa" />
-    <meta property="og:description" content="Undangan Perkahwinan Fareez & Najwa" />
+    <meta property="og:title" content="Undangan Perkahwinan Fareez & Najwa" />
+    <meta property="og:description" content="5 Julai 2025. Kuala Lumpur." />
     <meta property="og:image" content="https://tawin-og.vercel.app/api/kad-nama?nama=Fareez&pasangan=Najwa&bg=2&font=1" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Kad Kahwin Fareez & Najwa" />
 @endsection
 
-@section('title', 'Undangan Perkahwinan Majlis Sanding')
+@section('title', 'Fareez & Najwa')
 
 @section('styles')
 
@@ -145,7 +145,7 @@
                 58200 W.P. Kuala Lumpur,<br>
             </div>
             <div class="flex gap-4 justify-center">
-                <a href="https://maps.google.com/?q=Dewan+Seri+Melati+Kajang" target="_blank"
+                <a href="https://maps.app.goo.gl/cxo1PtFGRFUHzNU96" target="_blank"
                     class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow">Google Maps</a>
                 <a href="https://waze.com/ul?ll=2.9936,101.7890&navigate=yes" target="_blank"
                     class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow">Waze</a>
