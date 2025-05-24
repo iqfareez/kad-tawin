@@ -164,7 +164,8 @@
             <div class="text-center text-xl text-gray-700 mt-4 mb-4">
                 menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan Putera kami
             </div>
-            <div class="text-center font-figtree text-lg font-semibold text-pink-800 mb-0">Muhammad Fareez Iqmal</div>
+            <div class="text-center font-figtree text-lg font-semibold text-pink-800 mb-0">Muhammad Fareez Iqmal bin Mohd
+                Sharipuddin</div>
             <div class="text-center text-lg text-gray-600 my-0">serta pasangannya</div>
             <div class="text-center font-figtree text-lg font-semibold text-pink-800 mt-0">Nur Farah Najwa binti Mahadzir
             </div>
