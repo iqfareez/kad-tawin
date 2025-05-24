@@ -107,47 +107,153 @@
         .transition-all {
             transition: all 0.3s ease;
         }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .hero-content.delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .hero-content.delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .hero-content.delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .hero-content.delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        .hero-content.delay-5 {
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Flower decorations animation - CSS only */
+        .flower-decoration {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .flower-decoration.delay-1 {
+            animation-delay: 0.3s;
+        }
+
+        .flower-decoration.delay-2 {
+            animation-delay: 0.5s;
+        }
+
+        .flower-decoration.delay-3 {
+            animation-delay: 0.7s;
+        }
+
+        .flower-decoration.delay-4 {
+            animation-delay: 0.9s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @@supports (animation-timeline: view()) {
+            .card-reveal {
+                opacity: 0;
+                transform: translateY(50px);
+                animation: slideInUp .7s ease-out both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 30%;
+            }
+
+            @keyframes slideInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        /* Fallback for browsers without animation-timeline support */
+        @@supports not (animation-timeline: view()) {
+            .card-reveal {
+                opacity: 0;
+                transform: translateY(50px);
+                animation: slideInUpFallback 1s ease-out forwards;
+            }
+
+            .card-reveal:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .card-reveal:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+
+            .card-reveal:nth-child(4) {
+                animation-delay: 0.6s;
+            }
+
+            @keyframes slideInUpFallback {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
     </style>
-
 @endsection
-
 
 @section('content')
     <div
         class="min-h-screen flex flex-col items-center drop-shadow-md relative overflow-x-hidden bg-gradient-to-br from-blue-100 to-white bg-fixed font-['Dancing_Script','Inter','sans-serif']">
-
         <!-- Hero Section -->
         <section
             class="w-full flex flex-col items-center justify-center py-16 px-4 text-center min-h-[60vh] md:min-h-0 md:py-16 md:justify-center relative"
             style="min-height:100svh;">
             <!-- Flower Decorations -->
-            <div class="absolute -top-12 -left-12 w-full h-56 md:w-1/2 md:h-32">
+            <div class="absolute -top-12 -left-12 w-full h-56 md:w-1/2 md:h-32 flower-decoration delay-1">
                 <img src="{{ asset('images/bunga-top.png') }}" alt="Flower Decoration" class="w-full h-full object-contain">
             </div>
-            <div class="absolute -bottom-10 -right-10 h-56 w-full md:w-1/2 md:h-32">
+            <div class="absolute -bottom-10 -right-10 h-56 w-full md:w-1/2 md:h-32 flower-decoration delay-2">
                 <img src="{{ asset('images/bunga-bottom.png') }}" alt="Flower Decoration"
                     class="w-full h-full object-contain">
             </div>
-            <div class="absolute top-[40%] -left-18 -translate-y-1/2 w-40 h-1/2 md:w-56 md:h-56 opacity-45">
+            <div
+                class="absolute top-[40%] -left-18 -translate-y-1/2 w-40 h-1/2 md:w-56 md:h-56 opacity-45 flower-decoration delay-3">
                 <img src="{{ asset('images/bunga-left.png') }}" alt="Flower Decoration"
                     class="w-full h-full object-contain">
             </div>
-            <div class="absolute top-1/2 -right-18 -translate-y-1/3 w-40 h-1/2 md:w-56 md:h-56 opacity-45">
+            <div
+                class="absolute top-1/2 -right-18 -translate-y-1/3 w-40 h-1/2 md:w-56 md:h-56 opacity-45 flower-decoration delay-4">
                 <img src="{{ asset('images/bunga-right.png') }}" alt="Flower Decoration"
                     class="w-full h-full object-contain">
             </div>
             <!-- Hero Content -->
-            <div class="text-sm tracking-widest uppercase text-gray-600 mb-10 dm-serif-text-regular">Undangan Perkahwinan
+            <div class="text-sm tracking-widest uppercase text-gray-600 mb-10 dm-serif-text-regular hero-content">Undangan
+                Perkahwinan
             </div>
-            <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-2 dm-serif-text">Fareez</h1>
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-600 mb-2 dm-serif-text">&</h1>
-            <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-4 dm-serif-text">Najwa</h1>
-            <div class="text-lg md:text-xl text-gray-700 mt-10 mb-1">05.07.2025</div>
-            <div class="text-lg md:text-xl text-gray-500">9 Muharam 1447H</div>
+            <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-2 dm-serif-text hero-content delay-1">Fareez</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-600 mb-2 dm-serif-text hero-content delay-2">&</h1>
+            <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-4 dm-serif-text hero-content delay-3">Najwa</h1>
+            <div class="text-lg md:text-xl text-gray-700 mt-10 mb-1 hero-content delay-4">05.07.2025</div>
+            <div class="text-lg md:text-xl text-gray-500 hero-content delay-5">9 Muharam 1447H</div>
         </section>
 
         <!-- Parents Invitation Section -->
-        <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 z-5">
+        <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 z-5 card-reveal">
             <div class="text-center aref-ruqaa-regular text-xl text-gray-700 mb-4">السلام عليكم ورحمة الله وبركاته</div>
             <div class="text-center text-xl text-gray-700 mb-2">
                 Dengan penuh kesyukuran kehadrat Allah SWT, kami,
@@ -172,7 +278,7 @@
         </section>
 
         <!-- Event Details Section -->
-        <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center">
+        <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-2">Tarikh & Masa</div>
             <div class="text-gray-800 font-figtree font-medium mb-1">Sabtu, 5 Julai 2025</div>
             <div class="text-gray-800 font-figtree mb-3">12:00 tengahari - 4:00 petang</div>
@@ -199,12 +305,12 @@
         </section>
 
         <!-- Countdown Section -->
-        <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center">
+        <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-2">Countdown</div>
             <div id="countdown" class="text-2xl font-figtree text-gray-800 mb-4">Loading...</div>
         </section> <!-- Ucapan Section -->
         <section id="ucapan"
-            class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-16 flex flex-col items-center relative z-10">
+            class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-16 flex flex-col items-center relative z-10 card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-3">Ucapan</div>
             <form id="ucapanForm" class="w-full flex flex-col gap-3" action="{{ route('hantar_ucapan.store') }}"
                 method="POST">
@@ -396,7 +502,9 @@
                     submitButton.disabled = false;
                     submitButton.classList.remove('button-loading');
                 }
-            }); // Optional: Function to update ucapan list (if you want to show ucapan immediately)
+            });
+
+            // Update ucapan list
             function updateUcapanList(ucapanData) {
                 const ucapanList = document.querySelector('#ucapanList');
                 if (ucapanList) {
