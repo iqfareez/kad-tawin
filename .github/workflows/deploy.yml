@@ -1,0 +1,31 @@
+# The app is hosted ion VPS server. So basically we SSH into it and run the deploy script (git pull etc.)
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Login to Server via SSH and run deploy script to deploy
+      - name: Deploy to production server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ vars.HOST_IP }}
+          username: ${{ vars.HOST_USER }}
+          key: ${{ secrets.MY_PRIVATE_KEY}}
+          script: |
+            #!/usr/bin/env bash
+            set -e
+            cd htdocs/tawin.my
+            git pull
+            composer install
+            npm install
+            npm run build
