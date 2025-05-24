@@ -262,12 +262,20 @@
                         class="w-full h-full object-contain">
                 </div>
             @else
-                <!-- Flower Decorations Style 1-->
-                <div class="absolute -top-25 -left-40 w-full h-56 md:w-1/2 md:h-68 flower-decoration delay-1">
+                <!-- Flower Decorations Style 2-->
+                <div class="absolute -top-25 -left-50 w-full h-1/3 md:w-1/2 flower-decoration delay-1">
                     <img src="{{ asset('images/bunga_theme_2.png') }}" alt="Flower Decoration"
                         class="w-full h-full object-contain">
                 </div>
-                <div class="absolute -bottom-25 -right-40 h-56 w-full md:w-1/2 md:h-68 flower-decoration delay-2">
+                <div class="absolute bottom-[25%] -right-18 w-40 md:w-56 md:h-1/3 flower-decoration delay-2 rotate-180">
+                    <img src="{{ asset('images/bunga_panjang_theme_2.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+                <div class="absolute top-[35%] -left-18 w-40 h-1/2 md:w-56 md:h-1/3 flower-decoration delay-3">
+                    <img src="{{ asset('images/bunga_panjang_theme_2.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+                <div class="absolute -bottom-25 -right-50 h-1/3 w-full md:w-1/2 md:h-68 flower-decoration delay-4">
                     <img src="{{ asset('images/bunga_theme_2.png') }}" alt="Flower Decoration"
                         class="w-full h-full object-contain">
                 </div>
@@ -353,7 +361,8 @@
             <div class="flex gap-4 justify-center">
                 <a href="{{ $majlisDetail->venue_google_maps_url }}"
                     class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
-                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps" class="w-5 h-5 object-contain">
+                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps"
+                        class="w-5 h-5 object-contain">
                     Google Maps
                 </a>
             </div>
