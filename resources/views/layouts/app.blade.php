@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>App Name - @yield('title')</title>
 
+    @yield('head')
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @yield('styles')
@@ -14,7 +16,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mx-auto">
         @yield('content')
     </div>
 </body>

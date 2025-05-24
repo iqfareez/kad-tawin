@@ -1,6 +1,13 @@
-<!-- resources/views/child.blade.php -->
-
 @extends('layouts.app')
+
+@section('head')
+    <meta property="og:title" content="Kad Kahwin Fareez & Najwa" />
+    <meta property="og:description" content="Undangan Perkahwinan Fareez & Najwa" />
+    <meta property="og:image" content="https://tawin-og.vercel.app/api/kad-nama?nama=Fareez&pasangan=Najwa&bg=2&font=1" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kad Kahwin Fareez & Najwa" />
+@endsection
 
 @section('title', 'Undangan Perkahwinan Majlis Sanding')
 
@@ -16,6 +23,8 @@
     {{-- Figtree --}}
     <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
+    {{-- Aref Ruqaa --}}
+    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
     <style>
         h1,
         .font-dancing {
@@ -49,6 +58,18 @@
             font-weight: 400;
             font-style: normal;
         }
+
+        .aref-ruqaa-regular {
+            font-family: "Aref Ruqaa", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .aref-ruqaa-bold {
+            font-family: "Aref Ruqaa", serif;
+            font-weight: 700;
+            font-style: normal;
+        }
     </style>
 
 @endsection
@@ -56,22 +77,7 @@
 
 @section('content')
     <div
-        class="min-h-screen flex flex-col items-center relative overflow-x-hidden bg-gradient-to-br from-blue-100 to-white bg-fixed font-['Dancing_Script','Inter','sans-serif']">
-        <!-- Modern Blur Effect: covers whole page -->
-        <div class="fixed inset-0 -z-10 pointer-events-none">
-            <div
-                class="absolute w-[90vw] h-[90vw] md:w-[50vw] md:h-[50vw] bg-blue-100/60 blur-3xl rounded-full top-[-25vw] left-[-25vw]">
-            </div>
-            <div
-                class="absolute w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] bg-blue-200/40 blur-2xl rounded-full top-[30vh] left-[60vw]">
-            </div>
-            <div
-                class="absolute w-[70vw] h-[70vw] md:w-[35vw] md:h-[35vw] bg-blue-50/50 blur-2xl rounded-full bottom-[-20vw] right-[-20vw]">
-            </div>
-            <div
-                class="absolute w-[60vw] h-[60vw] md:w-[30vw] md:h-[30vw] bg-blue-300/30 blur-2xl rounded-full bottom-[10vh] left-[10vw]">
-            </div>
-        </div>
+        class="min-h-screen flex flex-col items-center drop-shadow-md relative overflow-x-hidden bg-gradient-to-br from-blue-100 to-white bg-fixed font-['Dancing_Script','Inter','sans-serif']">
 
         <!-- Hero Section -->
         <section
@@ -105,33 +111,34 @@
 
         <!-- Parents Invitation Section -->
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 z-5">
-            <div class="text-center text-gray-700 mb-2">Assalamualaikum</div>
-            <div class="text-center figtree-normal text-gray-700 mb-4">
+            <div class="text-center aref-ruqaa-regular text-xl text-gray-700 mb-4">السلام عليكم ورحمة الله وبركاته</div>
+            <div class="text-center text-xl text-gray-700 mb-2">
                 Dengan penuh kesyukuran kehadrat Allah SWT, kami,
             </div>
-            <div class="text-center font-semibold text-gray-800 leading-tight text-lg md:text-xl">
+            <div class="text-center figtree-normal font-semibold text-gray-800 leading-tight text-lg md:text-xl">
                 Mohd Sharipuddin bin Mohd Isa
             </div>
-            <div class="text-center font-semibold text-gray-800 my-0 leading-tight text-lg md:text-xl">
+            <div class="text-center figtree-normal font-semibold text-gray-800 my-0 leading-tight text-lg md:text-xl">
                 &
             </div>
-            <div class="text-center font-semibold text-gray-800 leading-tight text-lg md:text-xl">
+            <div class="text-center figtree-normal font-semibold text-gray-800 leading-tight text-lg md:text-xl">
                 Rosnani binti Hasmuni
             </div>
-            <div class="text-center figtree-normal text-gray-700 mt-4 mb-4">
+            <div class="text-center text-xl text-gray-700 mt-4 mb-4">
                 menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan Putera kami
             </div>
-            <div class="text-center text-xl font-bold text-pink-800 mb-1">Muhammad Fareez Iqmal</div>
-            <div class="text-center figtree-normal text-gray-600 mb-1">serta pasangannya</div>
-            <div class="text-center text-xl font-bold text-pink-800">Nur Farah Najwa binti Mahadzir</div>
+            <div class="text-center figtree-normal text-lg font-bold text-pink-800 mb-0">Muhammad Fareez Iqmal</div>
+            <div class="text-center text-lg text-gray-600 my-0">serta pasangannya</div>
+            <div class="text-center figtree-normal text-lg font-bold text-pink-800 mt-0">Nur Farah Najwa binti Mahadzir
+            </div>
         </section>
 
         <!-- Event Details Section -->
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center">
-            <div class="text-lg font-semibold text-pink-700 mb-2">Tarikh & Masa</div>
+            <div class="text-2xl font-semibold text-pink-700 mb-2">Tarikh & Masa</div>
             <div class="text-gray-800 figtree-normal mb-1">Sabtu, 5 Julai 2025</div>
             <div class="text-gray-800 figtree-normal mb-3">12:00 tengahari - 4:00 petang</div>
-            <div class="text-lg font-semibold text-pink-700 mb-2">Alamat</div>
+            <div class="text-2xl font-semibold text-pink-700 mb-2">Alamat</div>
             <div class="text-gray-800 figtree-normal mb-3 text-center">
                 Kompleks Komuniti Muhibbah,<br>
                 76, Jalan 4/155. Bukit OUG,<br>
