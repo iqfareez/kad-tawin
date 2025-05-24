@@ -115,7 +115,7 @@
             <div class="max-w-4xl mx-auto px-4 py-4">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
-                        <a href="{{ route('kenduri.sanding') }}"
+                        <a href="{{ route('kenduri.show', $slug) }}"
                             class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 transition-colors duration-200">
                             <x-heroicon-o-arrow-left class="w-5 h-5" />
                             <span class="figtree-normal font-medium">Kembali</span>
@@ -170,7 +170,7 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-600 mb-2 dm-serif-text">Belum ada ucapan</h3>
                     <p class="text-gray-500 figtree-normal mb-6">Jadilah yang pertama memberikan ucapan!</p>
-                    <a href="{{ route('kenduri.sanding') }}#ucapan"
+                    <a href="{{ route('kenduri.show') }}#ucapan"
                         class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg shadow-md transition-all duration-200 figtree-normal font-medium">
                         <x-heroicon-o-pencil class="w-4 h-4" />
                         Tulis Ucapan

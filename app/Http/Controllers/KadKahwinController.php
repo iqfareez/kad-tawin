@@ -8,20 +8,20 @@ use Carbon\Carbon;
 
 class KadKahwinController extends Controller
 {
-    public function sanding()
+    public function show(string $slug)
     {
         // Set Carbon locale to Malaysian
         Carbon::setLocale('ms');
 
         // Get majlis details
-        $majlisDetail = MajlisDetail::where('slug', 'najwa-fareez')->first();
+        $majlisDetail = MajlisDetail::where('slug', $slug)->first();
 
         if (!$majlisDetail) {
             abort(404, 'Wedding invitation not found');
         }
 
         // Get the latest 5 ucapan for display on the main page
-        $ucapanList = \App\Models\Ucapan::where('from_form', 'najwa-fareez')
+        $ucapanList = \App\Models\Ucapan::where('from_form', $slug)
             ->latest()
             ->take(5)
             ->get()
@@ -33,46 +33,20 @@ class KadKahwinController extends Controller
                 ];
             });
 
-        return view('kad-kahwin.kad-kahwin', compact('ucapanList', 'majlisDetail'));
-    }
+        $og = $this->buildOgMetadata($majlisDetail);
 
-    public function tandang()
-    {
-        // Set Carbon locale to Malaysian
-        Carbon::setLocale('ms');
-
-        // Get majlis details
-        $majlisDetail = MajlisDetail::where('slug', 'fareez-najwa')->first();
-
-        if (!$majlisDetail) {
-            abort(404, 'Wedding invitation not found');
-        }
-
-        // Get the latest 5 ucapan for display on the main page
-        $ucapanList = \App\Models\Ucapan::where('from_form', 'fareez-najwa')
-            ->latest()
-            ->take(5)
-            ->get()
-            ->map(function ($ucapan) {
-                return [
-                    'nama' => $ucapan->nama,
-                    'ucapan' => $ucapan->ucapan,
-                    'created_at' => $ucapan->created_at->locale('ms')->diffForHumans(),
-                ];
-            });
-
-        return view('kad-kahwin.kad-kahwin', compact('ucapanList', 'majlisDetail'));
+        return view('kad-kahwin.kad-kahwin', compact('ucapanList', 'majlisDetail', 'og'));
     }
 
     /**
      * Display all ucapan submissions
      */
-    public function semua_ucapan()
+    public function semua_ucapan(string $slug)
     {
         // Set Carbon locale to Malaysian
         Carbon::setLocale('ms');
 
-        $ucapanList = \App\Models\Ucapan::where('from_form', 'fareez-najwa')
+        $ucapanList = \App\Models\Ucapan::where('from_form', $slug)
             ->latest()
             ->get()
             ->map(function ($ucapan) {
@@ -83,7 +57,7 @@ class KadKahwinController extends Controller
                 ];
             });
 
-        return view('kad-kahwin.semua-ucapan', compact('ucapanList'));
+        return view('kad-kahwin.semua-ucapan', compact('ucapanList', 'slug'));
     }
 
     /**
@@ -100,7 +74,7 @@ class KadKahwinController extends Controller
             $ucapan = new \App\Models\Ucapan();
             $ucapan->nama = $request->input('nama');
             $ucapan->ucapan = $request->input('ucapan');
-            $ucapan->from_form = $request->input('from_form', 'fareez-najwa');
+            $ucapan->from_form = $request->input('from_form');
             $ucapan->save();
 
             // Check if request expects JSON (AJAX)
@@ -136,5 +110,50 @@ class KadKahwinController extends Controller
 
             return redirect()->back()->with('error', 'Terdapat masalah. Sila cuba lagi.')->withInput();
         }
+    }
+
+    /**
+     * Build Open Graph metadata array for a given MajlisDetail.
+     *
+     * @param \App\Models\MajlisDetail $majlisDetail
+     * @return array
+     */
+    protected function buildOgMetadata($majlisDetail)
+    {
+        $title = $majlisDetail->title ?: 'Undangan Perkahwinan';
+        if ($majlisDetail->pengantin_lelaki_first) {
+            $ogTitle = "{$title} {$majlisDetail->pengantin_lelaki_display_name} & {$majlisDetail->pengantin_perempuan_display_name}";
+            $ogImage = "https://tawin-og.vercel.app/api/kad-nama?nama={$majlisDetail->pengantin_lelaki_display_name}&pasangan={$majlisDetail->pengantin_perempuan_display_name}&bg=4&font=1";
+        } else {
+            $ogTitle = "{$title} {$majlisDetail->pengantin_perempuan_display_name} & {$majlisDetail->pengantin_lelaki_display_name}";
+            $ogImage = "https://tawin-og.vercel.app/api/kad-nama?nama={$majlisDetail->pengantin_perempuan_display_name}&pasangan={$majlisDetail->pengantin_lelaki_display_name}&bg=3&font=1";
+        }
+
+        $ogDescription = $majlisDetail->majlis_date
+            ? $majlisDetail->majlis_date->locale('ms')->isoFormat('D MMMM Y')
+            : '';
+        if ($majlisDetail->venue_address_line_2) {
+            $addressParts = explode(',', $majlisDetail->venue_address_line_2);
+            $lastAddress = trim(collect($addressParts)->last());
+
+            // Remove trailing dots from both date and address
+            $ogDescription = rtrim($ogDescription, '. ');
+            // Remove trailing dots and spaces from the last address
+            $lastAddress = rtrim($lastAddress, ". \t\n\r\0\x0B");
+
+            $ogDescription .= '. ' . $lastAddress . '.';
+            // Add invitation text
+            $ogDescription .= ' Tetamu dijemput hadir';
+        }
+
+        $ogSiteName = "{$majlisDetail->pengantin_lelaki_display_name} & {$majlisDetail->pengantin_perempuan_display_name} - " . parse_url(url('/'), PHP_URL_HOST);
+
+        return [
+            'title' => $ogTitle,
+            'description' => $ogDescription,
+            'image' => $ogImage,
+            'type' => 'website',
+            'site_name' => $ogSiteName,
+        ];
     }
 }

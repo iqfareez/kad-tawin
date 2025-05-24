@@ -1,26 +1,12 @@
 @extends('layouts.app')
 
 @section('head')
-    @if ($majlisDetail->pengantin_lelaki_first)
-        <meta property="og:title"
-            content="{{ $majlisDetail->title ?: 'Undangan Perkahwinan' }} {{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }}" />
-    @else
-        <meta property="og:title"
-            content="{{ $majlisDetail->title ?: 'Undangan Perkahwinan' }} {{ $majlisDetail->pengantin_perempuan_display_name }} & {{ $majlisDetail->pengantin_lelaki_display_name }}" />
-    @endif
-    <meta property="og:description"
-        content="{{ $majlisDetail->majlis_date->locale('ms')->isoFormat('D MMMM Y') }}. {{ $majlisDetail->venue_address_line_2 ? collect(explode(',', $majlisDetail->venue_address_line_2))->last() : '' }}." />
-    @if ($majlisDetail->pengantin_lelaki_first)
-        <meta property="og:image"
-            content="https://tawin-og.vercel.app/api/kad-nama?nama={{ $majlisDetail->pengantin_lelaki_display_name }}&pasangan={{ $majlisDetail->pengantin_perempuan_display_name }}&bg=4&font=1" />
-    @else
-        <meta property="og:image"
-            content="https://tawin-og.vercel.app/api/kad-nama?nama={{ $majlisDetail->pengantin_perempuan_display_name }}&pasangan={{ $majlisDetail->pengantin_lelaki_display_name }}&bg=3&font=1" />
-    @endif
+    <meta property="og:title" content="{!! $og['title'] !!}" />
+    <meta property="og:description" content="{!! $og['description'] !!}" />
+    <meta property="og:image" content="{!! $og['image'] !!}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name"
-        content="{{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }} - tawin.my" />
+    <meta property="og:site_name" content="{!! $og['site_name'] !!}" />
 @endsection
 
 @section('title', $majlisDetail->pengantin_lelaki_display_name . ' & ' .
@@ -361,8 +347,7 @@
             <div class="flex gap-4 justify-center">
                 <a href="{{ $majlisDetail->venue_google_maps_url }}"
                     class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
-                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps"
-                        class="w-5 h-5 object-contain">
+                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps" class="w-5 h-5 object-contain">
                     Google Maps
                 </a>
             </div>
@@ -379,6 +364,7 @@
             <form id="ucapanForm" class="w-full flex flex-col gap-3" action="{{ route('hantar_ucapan.store') }}"
                 method="POST">
                 @csrf
+                <input type="hidden" name="from_form" value="{{ $majlisDetail->slug }}">
                 <input type="text" name="nama" placeholder="Nama anda"
                     class="border rounded font-figtree px-3 py-2 focus:outline-pink-400" required>
                 <textarea name="ucapan" placeholder="Ucapan anda"
@@ -400,7 +386,7 @@
                     @endforeach
 
                     <div class="text-center text-sm mt-4">
-                        <a href="{{ route('semua_ucapan') }}"
+                        <a href="{{ route('semua_ucapan', $majlisDetail->slug) }}"
                             class="inline-flex items-center gap-2 px-6 py-3 transition-all duration-200 font-figtree font-medium">
                             Lihat Semua Ucapan
                         </a>

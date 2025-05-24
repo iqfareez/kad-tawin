@@ -7,9 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-Route::get('/fareez-najwa', [KadKahwinController::class, 'tandang'])->name('kenduri.tandang');
-Route::post('/fareez-najwa/hantar-ucapan', [KadKahwinController::class, 'hantar_ucapan'])->name('hantar_ucapan.store');
-Route::get('/fareez-najwa/semua-ucapan', [KadKahwinController::class, 'semua_ucapan'])->name('semua_ucapan');
-Route::get('/najwa-fareez', [KadKahwinController::class, 'sanding'])->name('kenduri.sanding');
+Route::get('/{slug}', [KadKahwinController::class, 'show'])
+    ->where('slug', '[a-z\-]+')
+    ->name('kenduri.show');
+Route::post('/hantar-ucapan', [KadKahwinController::class, 'hantar_ucapan'])->name('hantar_ucapan.store');
+Route::get('/{slug}/semua-ucapan', [KadKahwinController::class, 'semua_ucapan'])->name('semua_ucapan');
