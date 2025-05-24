@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', '❤️') - Walimatul Urus</title>
 
+    <script defer src="https://umami.iqfareez.com/script.js" data-website-id="52071592-9fe1-4eb3-83a9-dec970355d14">
+    </script>
+
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
     @yield('head')
