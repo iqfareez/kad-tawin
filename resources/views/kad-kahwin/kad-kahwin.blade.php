@@ -232,31 +232,47 @@
 @endsection
 
 @section('content')
-    <div
-        class="min-h-screen flex flex-col items-center drop-shadow-md relative overflow-x-hidden bg-gradient-to-br from-blue-100 to-white bg-fixed font-['Dancing_Script','Inter','sans-serif']">
+    <div class="min-h-screen flex flex-col items-center drop-shadow-md relative overflow-x-hidden bg-fixed font-['Dancing_Script','Inter','sans-serif'] 
+        @if ($majlisDetail->theme == 1) bg-gradient-to-br from-blue-100 to-white
+        @else
+            bg-gradient-to-br from-[#f7efe6] to-[#fff8ef] @endif
+        "
         <!-- Hero Section -->
         <section
             class="w-full flex flex-col items-center justify-center py-16 px-4 text-center min-h-[60vh] md:min-h-0 md:py-16 md:justify-center relative"
             style="min-height:100svh;">
-            <!-- Flower Decorations -->
-            <div class="absolute -top-12 -left-12 w-full h-56 md:w-1/2 md:h-32 flower-decoration delay-1">
-                <img src="{{ asset('images/bunga-top.png') }}" alt="Flower Decoration"
-                    class="w-full h-full object-contain">
-            </div>
-            <div class="absolute -bottom-10 -right-10 h-56 w-full md:w-1/2 md:h-32 flower-decoration delay-2">
-                <img src="{{ asset('images/bunga-bottom.png') }}" alt="Flower Decoration"
-                    class="w-full h-full object-contain">
-            </div>
-            <div
-                class="absolute top-[40%] -left-18 -translate-y-1/2 w-40 h-1/2 md:w-56 md:h-56 opacity-45 flower-decoration delay-3">
-                <img src="{{ asset('images/bunga-left.png') }}" alt="Flower Decoration"
-                    class="w-full h-full object-contain">
-            </div>
-            <div
-                class="absolute top-1/2 -right-18 -translate-y-1/3 w-40 h-1/2 md:w-56 md:h-56 opacity-45 flower-decoration delay-4">
-                <img src="{{ asset('images/bunga-right.png') }}" alt="Flower Decoration"
-                    class="w-full h-full object-contain">
-            </div>
+            @if ($majlisDetail->theme == 1)
+                <!-- Flower Decorations Style 1-->
+                <div class="absolute -top-12 -left-12 w-full h-56 md:w-1/2 md:h-32 flower-decoration delay-1">
+                    <img src="{{ asset('images/bunga-top.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+                <div class="absolute -bottom-10 -right-10 h-56 w-full md:w-1/2 md:h-32 flower-decoration delay-2">
+                    <img src="{{ asset('images/bunga-bottom.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+                <div
+                    class="absolute top-[40%] -left-18 -translate-y-1/2 w-40 h-1/2 md:w-56 md:h-56 opacity-45 flower-decoration delay-3">
+                    <img src="{{ asset('images/bunga-left.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+                <div
+                    class="absolute top-1/2 -right-18 -translate-y-1/3 w-40 h-1/2 md:w-56 md:h-56 opacity-45 flower-decoration delay-4">
+                    <img src="{{ asset('images/bunga-right.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+            @else
+                <!-- Flower Decorations Style 1-->
+                <div class="absolute -top-25 -left-40 w-full h-56 md:w-1/2 md:h-68 flower-decoration delay-1">
+                    <img src="{{ asset('images/bunga_theme_2.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+                <div class="absolute -bottom-25 -right-40 h-56 w-full md:w-1/2 md:h-68 flower-decoration delay-2">
+                    <img src="{{ asset('images/bunga_theme_2.png') }}" alt="Flower Decoration"
+                        class="w-full h-full object-contain">
+                </div>
+            @endif
+
             <!-- Hero Content -->
             <div
                 class="text-sm md:text-xl tracking-widest uppercase text-gray-600 mb-10 dm-serif-text-regular hero-content">
@@ -277,7 +293,8 @@
             @endif
             <div class="text-lg md:text-xl text-gray-700 mt-10 mb-1 hero-content delay-4">
                 {{ $majlisDetail->majlis_date->locale('ms')->isoFormat('DD.MM.Y') }}</div>
-            <div class="text-lg md:text-xl text-gray-500 hero-content delay-5">{{ $majlisDetail->majlis_date_hijri }}</div>
+            <div class="text-lg md:text-xl text-gray-500 hero-content delay-5">{{ $majlisDetail->majlis_date_hijri }}
+            </div>
         </section>
 
         <!-- Parents Invitation Section -->
