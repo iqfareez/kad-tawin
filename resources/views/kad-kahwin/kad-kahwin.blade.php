@@ -6,7 +6,7 @@
     <meta property="og:image" content="https://tawin-og.vercel.app/api/kad-nama?nama=Fareez&pasangan=Najwa&bg=2&font=1" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Kad Kahwin Fareez & Najwa" />
+    <meta property="og:site_name" content="Fareez & Najwa - tawin.my" />
 @endsection
 
 @section('title', 'Fareez & Najwa')
