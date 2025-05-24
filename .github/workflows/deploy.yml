@@ -26,6 +26,17 @@ jobs:
             set -e
             cd htdocs/tawin.my
             git pull
+
             composer install
+
+            php artisan migrate
+
+            # Clear cache & optimize
+            php artisan icons:clear
+            php artisan optimize:clear
+
+            php artisan icons:cache
+            php artisan optimize
+
             npm install
             npm run build

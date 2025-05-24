@@ -52,11 +52,9 @@
             font-style: italic;
         }
 
-        .figtree-normal {
+        .font-figtree {
             font-family: "Figtree", sans-serif;
             font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
         }
 
         .aref-ruqaa-regular {
@@ -69,6 +67,45 @@
             font-family: "Aref Ruqaa", serif;
             font-weight: 700;
             font-style: normal;
+        }
+
+        /* Loading animation for button */
+        .button-loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Pulse animation for loading text */
+        .loading-text {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Form validation styles */
+        .form-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .form-success {
+            border-color: #10b981 !important;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Smooth transitions */
+        .transition-all {
+            transition: all 0.3s ease;
         }
     </style>
 
@@ -115,75 +152,100 @@
             <div class="text-center text-xl text-gray-700 mb-2">
                 Dengan penuh kesyukuran kehadrat Allah SWT, kami,
             </div>
-            <div class="text-center figtree-normal font-semibold text-gray-800 leading-tight text-lg md:text-xl">
+            <div class="text-center font-figtree font-semibold text-gray-800 leading-tight text-lg md:text-xl">
                 Mohd Sharipuddin bin Mohd Isa
             </div>
-            <div class="text-center figtree-normal font-semibold text-gray-800 my-0 leading-tight text-lg md:text-xl">
+            <div class="text-center font-figtree font-semibold text-gray-800 my-0 leading-tight text-lg md:text-xl">
                 &
             </div>
-            <div class="text-center figtree-normal font-semibold text-gray-800 leading-tight text-lg md:text-xl">
+            <div class="text-center font-figtree font-semibold text-gray-800 leading-tight text-lg md:text-xl">
                 Rosnani binti Hasmuni
             </div>
             <div class="text-center text-xl text-gray-700 mt-4 mb-4">
                 menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan Putera kami
             </div>
-            <div class="text-center figtree-normal text-lg font-bold text-pink-800 mb-0">Muhammad Fareez Iqmal</div>
+            <div class="text-center font-figtree text-lg font-semibold text-pink-800 mb-0">Muhammad Fareez Iqmal</div>
             <div class="text-center text-lg text-gray-600 my-0">serta pasangannya</div>
-            <div class="text-center figtree-normal text-lg font-bold text-pink-800 mt-0">Nur Farah Najwa binti Mahadzir
+            <div class="text-center font-figtree text-lg font-semibold text-pink-800 mt-0">Nur Farah Najwa binti Mahadzir
             </div>
         </section>
 
         <!-- Event Details Section -->
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center">
             <div class="text-2xl font-semibold text-pink-700 mb-2">Tarikh & Masa</div>
-            <div class="text-gray-800 figtree-normal mb-1">Sabtu, 5 Julai 2025</div>
-            <div class="text-gray-800 figtree-normal mb-3">12:00 tengahari - 4:00 petang</div>
-            <div class="text-2xl font-semibold text-pink-700 mb-2">Alamat</div>
-            <div class="text-gray-800 figtree-normal mb-3 text-center">
-                Kompleks Komuniti Muhibbah,<br>
+            <div class="text-gray-800 font-figtree font-medium mb-1">Sabtu, 5 Julai 2025</div>
+            <div class="text-gray-800 font-figtree mb-3">12:00 tengahari - 4:00 petang</div>
+            <div class="flex gap-4 justify-center">
+                <a href="#"
+                    class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
+                    <x-heroicon-s-calendar-date-range class="w-5 h-5" />
+                    RSVP
+                </a>
+            </div>
+            <div class="text-2xl font-semibold text-pink-700 mb-2 mt-8">Alamat</div>
+            <div class="text-gray-800 font-figtree mb-3 text-center">
+                <div class="font-medium">Kompleks Komuniti Muhibbah,</div>
                 76, Jalan 4/155. Bukit OUG,<br>
                 58200 W.P. Kuala Lumpur,<br>
             </div>
             <div class="flex gap-4 justify-center">
-                <a href="https://maps.app.goo.gl/cxo1PtFGRFUHzNU96" target="_blank"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded shadow">Google Maps</a>
-                <a href="https://waze.com/ul?ll=2.9936,101.7890&navigate=yes" target="_blank"
-                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow">Waze</a>
+                <a href="https://maps.app.goo.gl/cxo1PtFGRFUHzNU96"
+                    class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
+                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps" class="w-5 h-5 object-contain">
+                    Google Maps
+                </a>
             </div>
         </section>
 
-        <!-- Countdown & RSVP Section -->
+        <!-- Countdown Section -->
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center">
-            <div class="text-lg font-semibold text-pink-700 mb-2">Countdown</div>
-            <div id="countdown" class="text-2xl figtree-normal font-bold text-gray-800 mb-4">Loading...</div>
-            <a href="#rsvp" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded shadow text-lg">RSVP</a>
-        </section>
-
-        <!-- Ucapan Section -->
+            <div class="text-2xl font-semibold text-pink-700 mb-2">Countdown</div>
+            <div id="countdown" class="text-2xl font-figtree text-gray-800 mb-4">Loading...</div>
+        </section> <!-- Ucapan Section -->
         <section id="ucapan"
             class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-16 flex flex-col items-center relative z-10">
-            <div class="text-lg font-semibold text-pink-700 mb-2">Ucapan</div>
-            <form class="w-full flex flex-col gap-3">
+            <div class="text-2xl font-semibold text-pink-700 mb-3">Ucapan</div>
+            <form id="ucapanForm" class="w-full flex flex-col gap-3" action="{{ route('hantar_ucapan.store') }}"
+                method="POST">
+                @csrf
                 <input type="text" name="nama" placeholder="Nama anda"
-                    class="border rounded px-3 py-2 focus:outline-pink-400" required>
-                <textarea name="ucapan" placeholder="Ucapan anda" class="border rounded px-3 py-2 focus:outline-pink-400"
+                    class="border rounded font-figtree px-3 py-2 focus:outline-pink-400" required>
+                <textarea name="ucapan" placeholder="Ucapan anda" class="border rounded font-figtree px-3 py-2 focus:outline-pink-400"
                     rows="3" required></textarea>
                 <button type="submit"
-                    class="bg-pink-500 hover:bg-pink-600 figtree-normal text-white px-4 py-2 rounded shadow">Hantar
-                    Ucapan</button>
-            </form>
-            <!-- Placeholder for ucapan list -->
-            <div class="w-full mt-6">
-                <div class="text-gray-500 text-sm text-center">Ucapan akan dipaparkan di sini.</div>
+                    class="bg-pink-500 hover:bg-pink-600 font-figtree text-white px-4 py-2 rounded shadow transition-colors duration-200">
+                    <span class="button-text">Hantar Ucapan</span>
+                    <span class="loading-text hidden">Menghantar...</span>
+                </button>
+            </form> <!-- Ucapan list with top 5 submissions -->
+            <div class="w-full mt-6" id="ucapanList">
+                @if ($ucapanList && $ucapanList->count() > 0)
+                    @foreach ($ucapanList as $ucapan)
+                        <div class="bg-pink-50 border border-pink-200 rounded-lg p-4 mb-3">
+                            <div class="font-semibold text-pink-800">{{ $ucapan['nama'] }}</div>
+                            <div class="text-gray-700 font-figtree mt-1">{{ $ucapan['ucapan'] }}</div>
+                            <div class="text-xs font-figtree text-gray-500 mt-2">{{ $ucapan['created_at'] }}</div>
+                        </div>
+                    @endforeach
+
+                    <div class="text-center text-sm mt-4">
+                        <a href="{{ route('semua_ucapan') }}"
+                            class="inline-flex items-center gap-2 px-6 py-3 transition-all duration-200 font-figtree font-medium">
+                            Lihat Semua Ucapan
+                        </a>
+                    </div>
+                @else
+                    <div id="ucapan_placeholder" class="text-gray-500 text-md text-center">Ucapan akan dipaparkan di sini.
+                    </div>
+                @endif
             </div>
         </section>
-    </div>
-
-    <!-- Countdown Script -->
+    </div> <!-- Countdown Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Countdown functionality
             function updateCountdown() {
-                const eventDate = new Date('2025-06-28T12:00:00+08:00');
+                const eventDate = new Date('2025-07-05T12:00:00+08:00');
                 const now = new Date();
                 const diff = eventDate - now;
                 if (diff <= 0) {
@@ -198,7 +260,163 @@
                     `${days} hari ${hours} jam ${minutes} minit`;
             }
             updateCountdown();
-            setInterval(updateCountdown, 1000);
+            setInterval(updateCountdown, 1000); // Form submission with AJAX and SweetAlert2
+            const ucapanForm = document.getElementById('ucapanForm');
+            const submitButton = ucapanForm.querySelector('button[type="submit"]');
+            const buttonText = submitButton.querySelector('.button-text');
+            const loadingText = submitButton.querySelector('.loading-text');
+            const namaInput = ucapanForm.querySelector('input[name="nama"]');
+            const ucapanTextarea = ucapanForm.querySelector('textarea[name="ucapan"]');
+
+            // Add real-time validation feedback
+            function validateField(field, isValid) {
+                field.classList.remove('form-error', 'form-success');
+                if (isValid) {
+                    field.classList.add('form-success');
+                } else {
+                    field.classList.add('form-error');
+                }
+            }
+
+            // Real-time validation
+            namaInput.addEventListener('blur', function() {
+                validateField(this, this.value.trim().length > 0);
+            });
+
+            ucapanTextarea.addEventListener('blur', function() {
+                validateField(this, this.value.trim().length > 0);
+            });
+
+            ucapanForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                // Client-side validation
+                const nama = namaInput.value.trim();
+                const ucapan = ucapanTextarea.value.trim();
+
+                if (!nama || !ucapan) {
+                    await Swal.fire({
+                        icon: 'warning',
+                        title: 'Maklumat Tidak Lengkap',
+                        text: 'Sila isi semua medan yang diperlukan.',
+                        confirmButtonText: 'Faham',
+                        confirmButtonColor: '#ec4899',
+                    });
+
+                    if (!nama) validateField(namaInput, false);
+                    if (!ucapan) validateField(ucapanTextarea, false);
+                    return;
+                }
+
+                // Show loading state
+                buttonText.classList.add('hidden');
+                loadingText.classList.remove('hidden');
+                submitButton.disabled = true;
+                submitButton.classList.add('button-loading');
+
+                try {
+                    const formData = new FormData(ucapanForm);
+
+                    const response = await fetch(ucapanForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json',
+                        }
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        // Show success notification with custom styling
+                        await Swal.fire({
+                            icon: 'success',
+                            title: 'Tahniah!',
+                            text: result.message,
+                            confirmButtonText: 'Terima kasih',
+                            confirmButtonColor: '#ec4899',
+                            background: '#fff',
+                            color: '#374151',
+                            customClass: {
+                                popup: 'rounded-lg shadow-2xl',
+                                title: 'text-gray-800',
+                                content: 'text-gray-600'
+                            },
+                            showClass: {
+                                popup: 'animate__animated animate__fadeInDown'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                            }
+                        });
+
+                        // Reset form and clear validation styles
+                        ucapanForm.reset();
+                        namaInput.classList.remove('form-error', 'form-success');
+                        ucapanTextarea.classList.remove('form-error', 'form-success');
+
+                        if (result.data) {
+                            updateUcapanList(result.data);
+                        }
+
+                    } else {
+                        throw new Error(result.message || 'Terdapat masalah teknikal');
+                    }
+
+                } catch (error) {
+                    console.error('Error submitting form:', error);
+
+                    // Show error notification
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: error.message || 'Terdapat masalah teknikal. Sila cuba lagi.',
+                        confirmButtonText: 'Cuba Lagi',
+                        confirmButtonColor: '#ec4899',
+                        background: '#fff',
+                        color: '#374151',
+                        customClass: {
+                            popup: 'rounded-lg shadow-2xl',
+                            title: 'text-red-600',
+                            content: 'text-gray-600'
+                        },
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    });
+                } finally {
+                    // Reset button state
+                    buttonText.classList.remove('hidden');
+                    loadingText.classList.add('hidden');
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('button-loading');
+                }
+            }); // Optional: Function to update ucapan list (if you want to show ucapan immediately)
+            function updateUcapanList(ucapanData) {
+                const ucapanList = document.querySelector('#ucapanList');
+                if (ucapanList) {
+                    const placeholder = ucapanList.querySelector('#ucapan_placeholder');
+                    if (placeholder) {
+                        // Remove placeholder
+                        placeholder.remove();
+                    }
+
+                    // Create new ucapan element
+                    const ucapanElement = document.createElement('div');
+                    ucapanElement.className = 'bg-pink-50 border border-pink-200 rounded-lg p-4 mb-3';
+                    ucapanElement.innerHTML = `
+                        <div class="font-semibold text-pink-800">${ucapanData.nama}</div>
+                        <div class="text-gray-700 font-figtree mt-1">${ucapanData.ucapan}</div>
+                        <div class="text-xs font-figtree text-gray-500 mt-2">Baru sahaja</div>
+                    `;
+
+                    ucapanList.prepend(ucapanElement);
+                }
+            }
         });
     </script>
 @endsection
