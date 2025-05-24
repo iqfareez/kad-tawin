@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\MajlisDetail;
+use Carbon\Carbon;
 
 class KadKahwinController extends Controller
 {
     public function sanding()
     {
+        // Set Carbon locale to Malaysian
+        Carbon::setLocale('ms');
+
+        // Get majlis details
+        $majlisDetail = MajlisDetail::where('slug', 'najwa-fareez')->first();
+
+        if (!$majlisDetail) {
+            abort(404, 'Wedding invitation not found');
+        }
+
         // Get the latest 5 ucapan for display on the main page
         $ucapanList = \App\Models\Ucapan::where('from_form', 'najwa-fareez')
             ->latest()
@@ -17,15 +29,25 @@ class KadKahwinController extends Controller
                 return [
                     'nama' => $ucapan->nama,
                     'ucapan' => $ucapan->ucapan,
-                    'created_at' => $ucapan->created_at->diffForHumans(),
+                    'created_at' => $ucapan->created_at->locale('ms')->diffForHumans(),
                 ];
             });
 
-        return view('kad-kahwin.kad-kahwin', compact('ucapanList'));
+        return view('kad-kahwin.kad-kahwin', compact('ucapanList', 'majlisDetail'));
     }
 
     public function tandang()
     {
+        // Set Carbon locale to Malaysian
+        Carbon::setLocale('ms');
+
+        // Get majlis details
+        $majlisDetail = MajlisDetail::where('slug', 'fareez-najwa')->first();
+
+        if (!$majlisDetail) {
+            abort(404, 'Wedding invitation not found');
+        }
+
         // Get the latest 5 ucapan for display on the main page
         $ucapanList = \App\Models\Ucapan::where('from_form', 'fareez-najwa')
             ->latest()
@@ -35,11 +57,11 @@ class KadKahwinController extends Controller
                 return [
                     'nama' => $ucapan->nama,
                     'ucapan' => $ucapan->ucapan,
-                    'created_at' => $ucapan->created_at->diffForHumans(),
+                    'created_at' => $ucapan->created_at->locale('ms')->diffForHumans(),
                 ];
             });
 
-        return view('kad-kahwin.kad-kahwin', compact('ucapanList'));
+        return view('kad-kahwin.kad-kahwin', compact('ucapanList', 'majlisDetail'));
     }
 
     /**
@@ -47,6 +69,9 @@ class KadKahwinController extends Controller
      */
     public function semua_ucapan()
     {
+        // Set Carbon locale to Malaysian
+        Carbon::setLocale('ms');
+
         $ucapanList = \App\Models\Ucapan::where('from_form', 'fareez-najwa')
             ->latest()
             ->get()
@@ -54,7 +79,7 @@ class KadKahwinController extends Controller
                 return [
                     'nama' => $ucapan->nama,
                     'ucapan' => $ucapan->ucapan,
-                    'created_at' => $ucapan->created_at->diffForHumans(),
+                    'created_at' => $ucapan->created_at->locale('ms')->diffForHumans(),
                 ];
             });
 

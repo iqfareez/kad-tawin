@@ -1,15 +1,20 @@
 @extends('layouts.app')
 
 @section('head')
-    <meta property="og:title" content="Undangan Perkahwinan Fareez & Najwa" />
-    <meta property="og:description" content="5 Julai 2025. Kuala Lumpur." />
-    <meta property="og:image" content="https://tawin-og.vercel.app/api/kad-nama?nama=Fareez&pasangan=Najwa&bg=2&font=1" />
+    <meta property="og:title"
+        content="Undangan Perkahwinan {{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }}" />
+    <meta property="og:description"
+        content="{{ $majlisDetail->majlis_date->locale('ms')->isoFormat('D MMMM Y') }}. {{ explode(',', $majlisDetail->venue_address_line_2)[1] ?? 'Kuala Lumpur' }}." />
+    <meta property="og:image"
+        content="https://tawin-og.vercel.app/api/kad-nama?nama={{ $majlisDetail->pengantin_lelaki_display_name }}&pasangan={{ $majlisDetail->pengantin_perempuan_display_name }}&bg=2&font=1" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Fareez & Najwa - tawin.my" />
+    <meta property="og:site_name"
+        content="{{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }} - tawin.my" />
 @endsection
 
-@section('title', 'Fareez & Najwa')
+@section('title', $majlisDetail->pengantin_lelaki_display_name . ' & ' .
+    $majlisDetail->pengantin_perempuan_display_name)
 
 @section('styles')
 
@@ -242,14 +247,26 @@
                     class="w-full h-full object-contain">
             </div>
             <!-- Hero Content -->
-            <div class="text-sm tracking-widest uppercase text-gray-600 mb-10 dm-serif-text-regular hero-content">Undangan
-                Perkahwinan
+            <div
+                class="text-sm md:text-xl tracking-widest uppercase text-gray-600 mb-10 dm-serif-text-regular hero-content">
+                Undangan Perkahwinan
             </div>
-            <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-2 dm-serif-text hero-content delay-1">Fareez</h1>
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-600 mb-2 dm-serif-text hero-content delay-2">&</h1>
-            <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-4 dm-serif-text hero-content delay-3">Najwa</h1>
-            <div class="text-lg md:text-xl text-gray-700 mt-10 mb-1 hero-content delay-4">05.07.2025</div>
-            <div class="text-lg md:text-xl text-gray-500 hero-content delay-5">9 Muharam 1447H</div>
+            @if ($majlisDetail->pengantin_lelaki_first)
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-2 dm-serif-text hero-content delay-1">
+                    {{ $majlisDetail->pengantin_lelaki_display_name }}</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-600 mb-2 dm-serif-text hero-content delay-2">&</h1>
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-4 dm-serif-text hero-content delay-3">
+                    {{ $majlisDetail->pengantin_perempuan_display_name }}</h1>
+            @else
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-2 dm-serif-text hero-content delay-1">
+                    {{ $majlisDetail->pengantin_perempuan_display_name }}</h1>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-600 mb-2 dm-serif-text hero-content delay-2">&</h1>
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-4 dm-serif-text hero-content delay-3">
+                    {{ $majlisDetail->pengantin_lelaki_display_name }}</h1>
+            @endif
+            <div class="text-lg md:text-xl text-gray-700 mt-10 mb-1 hero-content delay-4">
+                {{ $majlisDetail->majlis_date->locale('ms')->isoFormat('DD.MM.Y') }}</div>
+            <div class="text-lg md:text-xl text-gray-500 hero-content delay-5">{{ $majlisDetail->majlis_date_hijri }}</div>
         </section>
 
         <!-- Parents Invitation Section -->
@@ -259,29 +276,40 @@
                 Dengan penuh kesyukuran kehadrat Allah SWT, kami,
             </div>
             <div class="text-center font-figtree font-semibold text-gray-800 leading-tight text-lg md:text-xl">
-                Mohd Sharipuddin bin Mohd Isa
+                {{ $majlisDetail->bapa_name }}
             </div>
             <div class="text-center font-figtree font-semibold text-gray-800 my-0 leading-tight text-lg md:text-xl">
                 &
             </div>
             <div class="text-center font-figtree font-semibold text-gray-800 leading-tight text-lg md:text-xl">
-                Rosnani binti Hasmuni
+                {{ $majlisDetail->ibu_name }}
             </div>
             <div class="text-center text-xl text-gray-700 mt-4 mb-4">
-                menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan Putera kami
+                menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan
+                {{ $majlisDetail->pengantin_lelaki_first ? 'Putera' : 'Puteri' }} kami
             </div>
-            <div class="text-center font-figtree text-lg font-semibold text-pink-800 mb-0">Muhammad Fareez Iqmal bin Mohd
-                Sharipuddin</div>
-            <div class="text-center text-lg text-gray-600 my-0">serta pasangannya</div>
-            <div class="text-center font-figtree text-lg font-semibold text-pink-800 mt-0">Nur Farah Najwa binti Mahadzir
-            </div>
+            @if ($majlisDetail->pengantin_lelaki_first)
+                <div class="text-center font-figtree text-lg font-semibold text-pink-800 mb-0">
+                    {{ $majlisDetail->pengantin_lelaki_full_name }}</div>
+                <div class="text-center text-lg text-gray-600 my-0">serta pasangannya</div>
+                <div class="text-center font-figtree text-lg font-semibold text-pink-800 mt-0">
+                    {{ $majlisDetail->pengantin_perempuan_full_name }}</div>
+            @else
+                <div class="text-center font-figtree text-lg font-semibold text-pink-800 mt-0">
+                    {{ $majlisDetail->pengantin_perempuan_full_name }}</div>
+                <div class="text-center text-lg text-gray-600 my-0">serta pasangannya</div>
+                <div class="text-center font-figtree text-lg font-semibold text-pink-800 mb-0">
+                    {{ $majlisDetail->pengantin_lelaki_full_name }}</div>
+            @endif
+
         </section>
 
         <!-- Event Details Section -->
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-2">Tarikh & Masa</div>
-            <div class="text-gray-800 font-figtree font-medium mb-1">Sabtu, 5 Julai 2025</div>
-            <div class="text-gray-800 font-figtree mb-3">12:00 tengahari - 4:00 petang</div>
+            <div class="text-gray-800 font-figtree font-medium mb-1">
+                {{ $majlisDetail->majlis_date->locale('ms')->isoFormat('dddd, D MMMM Y') }}</div>
+            <div class="text-gray-800 font-figtree mb-3">{{ $majlisDetail->majlis_time }}</div>
             <div class="flex gap-4 justify-center">
                 <a href="#"
                     class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
@@ -291,12 +319,11 @@
             </div>
             <div class="text-2xl font-semibold text-pink-700 mb-2 mt-8">Alamat</div>
             <div class="text-gray-800 font-figtree mb-3 text-center">
-                <div class="font-medium">Kompleks Komuniti Muhibbah,</div>
-                76, Jalan 4/155. Bukit OUG,<br>
-                58200 W.P. Kuala Lumpur,<br>
+                <div class="font-medium">{{ $majlisDetail->venue_address_line_1 }}</div>
+                {!! nl2br(e($majlisDetail->venue_address_line_2)) !!}<br>
             </div>
             <div class="flex gap-4 justify-center">
-                <a href="https://maps.app.goo.gl/cxo1PtFGRFUHzNU96"
+                <a href="{{ $majlisDetail->venue_google_maps_url }}"
                     class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
                     <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps" class="w-5 h-5 object-contain">
                     Google Maps
@@ -352,7 +379,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Countdown functionality
             function updateCountdown() {
-                const eventDate = new Date('2025-07-05T12:00:00+08:00');
+                const eventDate = new Date('{{ $majlisDetail->majlis_date->format('Y-m-d') }}');
                 const now = new Date();
                 const diff = eventDate - now;
                 if (diff <= 0) {
