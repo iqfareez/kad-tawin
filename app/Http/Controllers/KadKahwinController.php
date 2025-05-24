@@ -121,12 +121,15 @@ class KadKahwinController extends Controller
     protected function buildOgMetadata($majlisDetail)
     {
         $title = $majlisDetail->title ?: 'Undangan Perkahwinan';
+
+        // For WhatsApp be able to display Link Preview, make sure the og:image doesn't exceed 600kb.
+        // See https://developers.facebook.com/docs/whatsapp/link-previews/ for more details.
         if ($majlisDetail->pengantin_lelaki_first) {
             $ogTitle = "{$title} {$majlisDetail->pengantin_lelaki_display_name} & {$majlisDetail->pengantin_perempuan_display_name}";
             $ogImage = "https://tawin-og.vercel.app/api/kad-nama?nama={$majlisDetail->pengantin_lelaki_display_name}&pasangan={$majlisDetail->pengantin_perempuan_display_name}&bg=4&font=1";
         } else {
             $ogTitle = "{$title} {$majlisDetail->pengantin_perempuan_display_name} & {$majlisDetail->pengantin_lelaki_display_name}";
-            $ogImage = "https://tawin-og.vercel.app/api/kad-nama?nama={$majlisDetail->pengantin_perempuan_display_name}&pasangan={$majlisDetail->pengantin_lelaki_display_name}&bg=3&font=1";
+            $ogImage = "https://tawin-og.vercel.app/api/kad-nama?nama={$majlisDetail->pengantin_perempuan_display_name}&pasangan={$majlisDetail->pengantin_lelaki_display_name}&bg=2&font=1";
         }
 
         $ogDescription = $majlisDetail->majlis_date
