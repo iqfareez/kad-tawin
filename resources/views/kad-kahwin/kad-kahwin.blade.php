@@ -5,8 +5,13 @@
         content="Undangan Perkahwinan {{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }}" />
     <meta property="og:description"
         content="{{ $majlisDetail->majlis_date->locale('ms')->isoFormat('D MMMM Y') }}. {{ explode(',', $majlisDetail->venue_address_line_2)[1] ?? 'Kuala Lumpur' }}." />
-    <meta property="og:image"
-        content="https://tawin-og.vercel.app/api/kad-nama?nama={{ $majlisDetail->pengantin_lelaki_display_name }}&pasangan={{ $majlisDetail->pengantin_perempuan_display_name }}&bg=2&font=1" />
+    @if ($majlisDetail->pengantin_lelaki_first)
+        <meta property="og:image"
+            content="https://tawin-og.vercel.app/api/kad-nama?nama={{ $majlisDetail->pengantin_lelaki_display_name }}&pasangan={{ $majlisDetail->pengantin_perempuan_display_name }}&bg=4&font=1" />
+    @else
+        <meta property="og:image"
+            content="https://tawin-og.vercel.app/api/kad-nama?nama={{ $majlisDetail->pengantin_perempuan_display_name }}&pasangan={{ $majlisDetail->pengantin_lelaki_display_name }}&bg=3&font=1" />
+    @endif
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name"
@@ -230,7 +235,8 @@
             style="min-height:100svh;">
             <!-- Flower Decorations -->
             <div class="absolute -top-12 -left-12 w-full h-56 md:w-1/2 md:h-32 flower-decoration delay-1">
-                <img src="{{ asset('images/bunga-top.png') }}" alt="Flower Decoration" class="w-full h-full object-contain">
+                <img src="{{ asset('images/bunga-top.png') }}" alt="Flower Decoration"
+                    class="w-full h-full object-contain">
             </div>
             <div class="absolute -bottom-10 -right-10 h-56 w-full md:w-1/2 md:h-32 flower-decoration delay-2">
                 <img src="{{ asset('images/bunga-bottom.png') }}" alt="Flower Decoration"
@@ -344,8 +350,8 @@
                 @csrf
                 <input type="text" name="nama" placeholder="Nama anda"
                     class="border rounded font-figtree px-3 py-2 focus:outline-pink-400" required>
-                <textarea name="ucapan" placeholder="Ucapan anda" class="border rounded font-figtree px-3 py-2 focus:outline-pink-400"
-                    rows="3" required></textarea>
+                <textarea name="ucapan" placeholder="Ucapan anda"
+                    class="border rounded font-figtree px-3 py-2 focus:outline-pink-400" rows="3" required></textarea>
                 <button type="submit"
                     class="bg-pink-500 hover:bg-pink-600 font-figtree text-white px-4 py-2 rounded shadow transition-colors duration-200">
                     <span class="button-text">Hantar Ucapan</span>
