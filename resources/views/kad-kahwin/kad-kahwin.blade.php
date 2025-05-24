@@ -3,10 +3,10 @@
 @section('head')
     @if ($majlisDetail->pengantin_lelaki_first)
         <meta property="og:title"
-            content="Undangan Perkahwinan {{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }}" />
+            content="{{ $majlisDetail->title ?: 'Undangan Perkahwinan' }} {{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }}" />
     @else
         <meta property="og:title"
-            content="Undangan Perkahwinan {{ $majlisDetail->pengantin_perempuan_display_name }} & {{ $majlisDetail->pengantin_lelaki_display_name }}" />
+            content="{{ $majlisDetail->title ?: 'Undangan Perkahwinan' }} {{ $majlisDetail->pengantin_perempuan_display_name }} & {{ $majlisDetail->pengantin_lelaki_display_name }}" />
     @endif
     <meta property="og:description"
         content="{{ $majlisDetail->majlis_date->locale('ms')->isoFormat('D MMMM Y') }}. {{ $majlisDetail->venue_address_line_2 ? collect(explode(',', $majlisDetail->venue_address_line_2))->last() : '' }}." />
@@ -284,7 +284,7 @@
             <!-- Hero Content -->
             <div
                 class="text-sm md:text-xl tracking-widest uppercase text-gray-600 mb-10 dm-serif-text-regular hero-content">
-                Undangan Perkahwinan
+                {{ $majlisDetail->title ?: 'Undangan Perkahwinan' }}
             </div>
             @if ($majlisDetail->pengantin_lelaki_first)
                 <h1 class="text-6xl md:text-7xl font-bold text-gray-800 mb-2 dm-serif-text hero-content delay-1">
@@ -411,7 +411,8 @@
                 @endif
             </div>
         </section>
-    </div> <!-- Countdown Script -->
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Countdown functionality
