@@ -1,4 +1,4 @@
-# The app is hosted ion VPS server. So basically we SSH into it and run the deploy script (git pull etc.)
+# The app is hosted on VPS server. So basically we SSH into it and run the deploy script (git pull etc.)
 name: Deploy Production
 
 on:
@@ -25,9 +25,15 @@ jobs:
             #!/usr/bin/env bash
             set -e
             cd htdocs/tawin.my
+
+            # ignore local changes
+            git reset --hard
+            git clean -fd
+
             git pull
 
             composer install
+            npm install
 
             php artisan migrate
 
@@ -38,5 +44,4 @@ jobs:
             php artisan icons:cache
             php artisan optimize
 
-            npm install
             npm run build
