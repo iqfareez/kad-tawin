@@ -1,10 +1,15 @@
 @extends('layouts.app')
 
 @section('head')
-    <meta property="og:title"
-        content="Undangan Perkahwinan {{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }}" />
+    @if ($majlisDetail->pengantin_lelaki_first)
+        <meta property="og:title"
+            content="Undangan Perkahwinan {{ $majlisDetail->pengantin_lelaki_display_name }} & {{ $majlisDetail->pengantin_perempuan_display_name }}" />
+    @else
+        <meta property="og:title"
+            content="Undangan Perkahwinan {{ $majlisDetail->pengantin_perempuan_display_name }} & {{ $majlisDetail->pengantin_lelaki_display_name }}" />
+    @endif
     <meta property="og:description"
-        content="{{ $majlisDetail->majlis_date->locale('ms')->isoFormat('D MMMM Y') }}. {{ explode(',', $majlisDetail->venue_address_line_2)[1] ?? 'Kuala Lumpur' }}." />
+        content="{{ $majlisDetail->majlis_date->locale('ms')->isoFormat('D MMMM Y') }}. {{ $majlisDetail->venue_address_line_2 ? collect(explode(',', $majlisDetail->venue_address_line_2))->last() : '' }}." />
     @if ($majlisDetail->pengantin_lelaki_first)
         <meta property="og:image"
             content="https://tawin-og.vercel.app/api/kad-nama?nama={{ $majlisDetail->pengantin_lelaki_display_name }}&pasangan={{ $majlisDetail->pengantin_perempuan_display_name }}&bg=4&font=1" />
