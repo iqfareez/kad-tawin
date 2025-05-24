@@ -412,7 +412,9 @@
             </div>
         </section>
     </div>
+@endsection
 
+@section('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Countdown functionality
