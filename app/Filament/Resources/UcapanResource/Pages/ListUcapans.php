@@ -10,6 +10,8 @@ class ListUcapans extends ListRecords
 {
     protected static string $resource = UcapanResource::class;
 
+    protected static ?string $title = 'Senarai Ucapan';
+
     protected function getHeaderActions(): array
     {
         return [
