@@ -40,8 +40,10 @@ jobs:
             # Clear cache & optimize
             php artisan icons:clear
             php artisan optimize:clear
+            php artisan filament:optimize-clear
 
             php artisan icons:cache
             php artisan optimize
+            php artisan filament:optimize
 
             npm run build
