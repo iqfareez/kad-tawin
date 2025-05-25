@@ -17,5 +17,7 @@ Route::post('/rsvp', [KadKahwinController::class, 'hantar_rsvp'])->name('rsvp.st
 
 Route::prefix('calendar')->group(function () {
     Route::get('/get-google-link/{slug}', [CalendarInvitationController::class, 'getGoogleCalendar'])->name('calendar.google');
+    Route::get('/get-yahoo-link/{slug}', [CalendarInvitationController::class, 'getYahooCalendar'])->name('calendar.yahoo');
+    Route::get('/get-outlook-link/{slug}', [CalendarInvitationController::class, 'getOutlookCalendar'])->name('calendar.outlook');
     Route::get('/get-ics/{slug}', [CalendarInvitationController::class, 'downloadIcs'])->name('calendar.ics');
 });

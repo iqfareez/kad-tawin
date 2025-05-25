@@ -9,7 +9,7 @@ use Spatie\CalendarLinks\Link;
 class CalendarInvitationController extends Controller
 {
     /**
-     * Generate Google Calendar link or ICS file for a wedding invitation.
+     * Generate Google Calendar link.
      *
      * @param string $slug Slug from MajlisDetail
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
@@ -21,6 +21,36 @@ class CalendarInvitationController extends Controller
         $link = $this->generateCalendarLinkInstance($majlisDetail);
 
         return redirect($link->google());
+    }
+
+    /**
+     * Generate Yahoo Calendar link.
+     *
+     * @param string $slug Slug from MajlisDetail
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
+    public function getYahooCalendar(string $slug)
+    {
+        $majlisDetail = MajlisDetail::where('slug', $slug)->firstOrFail();
+
+        $link = $this->generateCalendarLinkInstance($majlisDetail);
+
+        return redirect($link->yahoo());
+    }
+
+    /**
+     * Generate Outlook Calendar link.
+     *
+     * @param string $slug Slug from MajlisDetail
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
+    public function getOutlookCalendar(string $slug)
+    {
+        $majlisDetail = MajlisDetail::where('slug', $slug)->firstOrFail();
+
+        $link = $this->generateCalendarLinkInstance($majlisDetail);
+
+        return redirect($link->webOutlook());
     }
 
     /**

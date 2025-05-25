@@ -331,13 +331,31 @@
             <div class="text-2xl font-semibold text-pink-700 mb-2">Tarikh & Masa</div>
             <div class="text-gray-800 font-figtree font-medium mb-1">
                 {{ $majlisDetail->majlis_date->locale('ms')->isoFormat('dddd, D MMMM Y') }}</div>
-            <div class="text-gray-800 font-figtree mb-3">{{ $majlisDetail->majlis_time }}</div>
-            <div class="flex gap-4 justify-center mt-4">
-                <button id="rsvpBtn" type="button"
-                    class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded shadow transition-colors duration-200">
-                    <x-heroicon-s-calendar-date-range class="w-5 h-5" />
-                    <span id="rsvpBtnText">RSVP</span>
-                </button>
+            <div class="text-gray-800 font-figtree mb-1">{{ $majlisDetail->majlis_time }}</div>
+            <div class="relative inline-block text-center">
+                <button id="calendarDropdownBtn" type="button"
+                    class="font-figtree text-sm cursor-pointer text-pink-700 hover:text-pink-900 transition-colors duration-200">Tambah
+                    ke Kalendar</button>
+                <div id="calendarDropdownMenu"
+                    class="origin-top absolute left-1/2 -translate-x-1/2 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20 hidden">
+                    <div class="py-1 font-figtree text-sm text-gray-700">
+                        <a href="{{ route('calendar.google', $majlisDetail->slug) }}" target="_blank"
+                            class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">Google Calendar</a>
+                        <a href="{{ route('calendar.outlook', $majlisDetail->slug) }}" target="_blank"
+                            class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">Outlook</a>
+                        <a href="{{ route('calendar.yahoo', $majlisDetail->slug) }}" target="_blank"
+                            class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">Yahoo</a>
+                        <a href="{{ route('calendar.ics', $majlisDetail->slug) }}"
+                            class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">ICS (Download)</a>
+                    </div>
+                </div>
+                <div class="flex gap-4 justify-center mt-4">
+                    <button id="rsvpBtn" type="button"
+                        class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded shadow transition-colors duration-200">
+                        <x-heroicon-s-calendar-date-range class="w-5 h-5" />
+                        <span id="rsvpBtnText">RSVP</span>
+                    </button>
+                </div>
             </div>
             <div class="text-2xl font-semibold text-pink-700 mb-2 mt-8">Alamat</div>
             <div class="text-gray-800 font-figtree mb-3 text-center">
@@ -347,7 +365,8 @@
             <div class="flex gap-4 justify-center">
                 <a href="{{ $majlisDetail->venue_google_maps_url }}"
                     class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
-                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps" class="w-5 h-5 object-contain">
+                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps"
+                        class="w-5 h-5 object-contain">
                     Google Maps
                 </a>
             </div>
@@ -699,6 +718,24 @@
                     });
                 }
             });
+
+            // Calendar dropdown logic
+            const calendarDropdownBtn = document.getElementById('calendarDropdownBtn');
+            const calendarDropdownMenu = document.getElementById('calendarDropdownMenu');
+            if (calendarDropdownBtn && calendarDropdownMenu) {
+                calendarDropdownBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    calendarDropdownMenu.classList.toggle('hidden');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!calendarDropdownMenu.classList.contains('hidden')) {
+                        calendarDropdownMenu.classList.add('hidden');
+                    }
+                });
+                calendarDropdownMenu.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
         });
     </script>
 @endsection
