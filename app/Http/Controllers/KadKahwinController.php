@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MajlisDetail;
 use Carbon\Carbon;
+use App\Models\Rsvp;
 
 class KadKahwinController extends Controller
 {
@@ -113,6 +114,47 @@ class KadKahwinController extends Controller
     }
 
     /**
+     * RSVP POST request
+     */
+    public function hantar_rsvp(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'jumlah' => 'required|integer|min:1|max:10',
+            'email' => 'nullable|email|max:255',
+            'slug' => 'required|string',
+        ]);
+
+        // Use a hash to identify RSVP (by email if provided, else by name+slug)
+        $identifier = $request->input('email')
+            ? strtolower(trim($request->input('email')))
+            : strtolower(trim($request->input('nama'))) . '|' . $request->input('slug');
+
+        // Check if RSVP already exists
+        $existing = Rsvp::where('identifier', $identifier)->first();
+        if ($existing) {
+            return response()->json([
+                'success' => false,
+                'already' => true,
+                'message' => 'Anda telah RSVP sebelum ini. Maklumat dikemaskini.',
+            ]);
+        }
+
+        $rsvp = new Rsvp();
+        $rsvp->nama = $request->input('nama');
+        $rsvp->jumlah = $request->input('jumlah');
+        $rsvp->email = $request->input('email');
+        $rsvp->slug = $request->input('slug');
+        $rsvp->identifier = $identifier;
+        $rsvp->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Terima kasih kerana RSVP! Sila tambah ke kalendar anda.',
+        ]);
+    }
+
+    /**
      * Build Open Graph metadata array for a given MajlisDetail.
      *
      * @param \App\Models\MajlisDetail $majlisDetail
@@ -138,14 +180,10 @@ class KadKahwinController extends Controller
         if ($majlisDetail->venue_address_line_2) {
             $addressParts = explode(',', $majlisDetail->venue_address_line_2);
             $lastAddress = trim(collect($addressParts)->last());
-
-            // Remove trailing dots from both date and address
             $ogDescription = rtrim($ogDescription, '. ');
             // Remove trailing dots and spaces from the last address
             $lastAddress = rtrim($lastAddress, ". \t\n\r\0\x0B");
-
             $ogDescription .= '. ' . $lastAddress . '.';
-            // Add invitation text
             $ogDescription .= ' Tetamu dijemput hadir';
         }
 

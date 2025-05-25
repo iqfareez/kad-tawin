@@ -332,12 +332,12 @@
             <div class="text-gray-800 font-figtree font-medium mb-1">
                 {{ $majlisDetail->majlis_date->locale('ms')->isoFormat('dddd, D MMMM Y') }}</div>
             <div class="text-gray-800 font-figtree mb-3">{{ $majlisDetail->majlis_time }}</div>
-            <div class="flex gap-4 justify-center">
-                <a href="#"
-                    class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
+            <div class="flex gap-4 justify-center mt-4">
+                <button id="rsvpBtn" type="button"
+                    class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded shadow transition-colors duration-200">
                     <x-heroicon-s-calendar-date-range class="w-5 h-5" />
-                    RSVP
-                </a>
+                    <span id="rsvpBtnText">RSVP</span>
+                </button>
             </div>
             <div class="text-2xl font-semibold text-pink-700 mb-2 mt-8">Alamat</div>
             <div class="text-gray-800 font-figtree mb-3 text-center">
@@ -398,9 +398,44 @@
             </div>
         </section>
     </div>
+
+    <!-- RSVP Modal -->
+    <div id="rsvpModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
+        <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md relative">
+            <button id="closeRsvpModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">&times;</button>
+            <h2 class="text-2xl font-semibold text-pink-700 mb-4 text-center">RSVP Kehadiran</h2>
+            <form id="rsvpForm" class="flex flex-col gap-4">
+                @csrf
+                <input type="hidden" name="slug" value="{{ $majlisDetail->slug }}">
+                <div>
+                    <label class="block font-figtree mb-1">Nama <span class="text-pink-500">*</span></label>
+                    <input type="text" name="nama" class="border rounded px-3 py-2 w-full font-figtree" required
+                        autocomplete="name">
+                </div>
+                <div>
+                    <label class="block font-figtree mb-1">Jumlah Kehadiran <span class="text-pink-500">*</span></label>
+                    <select name="jumlah" class="border rounded px-3 py-2 w-full font-figtree" required>
+                        @for ($i = 1; $i <= 10; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-figtree mb-1">Email (pilihan)</label>
+                    <input type="email" name="email" class="border rounded px-3 py-2 w-full font-figtree"
+                        placeholder="Untuk jemputan digital">
+                </div>
+                <button type="submit"
+                    class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded shadow font-figtree transition-colors duration-200">
+                    Hantar RSVP
+                </button>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Countdown functionality
@@ -579,6 +614,93 @@
                     ucapanList.prepend(ucapanElement);
                 }
             }
+
+            // RSVP Modal logic
+            const rsvpBtn = document.getElementById('rsvpBtn');
+            const rsvpModal = document.getElementById('rsvpModal');
+            const closeRsvpModal = document.getElementById('closeRsvpModal');
+            const rsvpForm = document.getElementById('rsvpForm');
+            const rsvpBtnText = document.getElementById('rsvpBtnText');
+
+            function showRsvpModal() {
+                rsvpModal.classList.remove('hidden');
+            }
+
+            function hideRsvpModal() {
+                rsvpModal.classList.add('hidden');
+            }
+
+            rsvpBtn.addEventListener('click', function() {
+                showRsvpModal();
+            });
+
+            closeRsvpModal.addEventListener('click', hideRsvpModal);
+            rsvpModal.addEventListener('click', function(e) {
+                if (e.target === rsvpModal) hideRsvpModal();
+            });
+
+            rsvpForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const formData = new FormData(rsvpForm);
+                try {
+                    const res = await fetch('/rsvp', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json',
+                        }
+                    });
+                    const result = await res.json();
+                    if (result.success) {
+                        // Set calendar links
+                        // TODO: Make the calendar link work
+                        await Swal.fire({
+                            icon: 'success',
+                            title: 'Terima kasih! Anda telah RSVP.',
+                            html: `<div class='flex flex-col md:flex-row items-center justify-center gap-2 mt-4'>
+                                <a id='swalAppleCal' href='#' class='bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded font-figtree text-sm mb-2 md:mb-0' target='_blank'>Add to Apple Calendar</a>
+                                <a id='swalGoogleCal' href='#' class='bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded font-figtree text-sm' target='_blank'>Add to Google Calendar</a>
+                            </div>`,
+                            showConfirmButton: false,
+                            allowOutsideClick: true,
+                        });
+                        hideRsvpModal();
+
+                        // change button label to RSVP-ed
+                        rsvpBtnText.textContent = 'RSVP-ed';
+                        rsvpBtn.disabled = true;
+                        rsvpBtn.classList.add('opacity-50');
+                    } else if (result.already) {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'RSVP Dikemaskini',
+                            text: result.message,
+                            confirmButtonColor: '#ec4899',
+                        });
+                        hideRsvpModal();
+
+                        // change button label to RSVP-ed
+                        rsvpBtnText.textContent = 'RSVP-ed';
+                        rsvpBtn.disabled = true;
+                        rsvpBtn.classList.add('opacity-50');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ralat',
+                            text: result.message || 'Terdapat masalah teknikal.',
+                            confirmButtonColor: '#ec4899',
+                        });
+                    }
+                } catch (err) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ralat',
+                        text: 'Terdapat masalah teknikal. ',
+                        confirmButtonColor: '#ec4899',
+                    });
+                }
+            });
         });
     </script>
 @endsection
