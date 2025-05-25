@@ -120,15 +120,13 @@ class KadKahwinController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:255',
-            'jumlah' => 'required|integer|min:1|max:10',
-            'email' => 'nullable|email|max:255',
+            'kehadiran' => 'required|in:hadir,tidak_hadir',
+            'jumlah' => 'required_if:kehadiran,hadir|nullable|integer|min:1|max:10',
             'slug' => 'required|string',
         ]);
 
-        // Use a hash to identify RSVP (by email if provided, else by name+slug)
-        $identifier = $request->input('email')
-            ? strtolower(trim($request->input('email')))
-            : strtolower(trim($request->input('nama'))) . '|' . $request->input('slug');
+        // Use a hash to identify RSVP (by name+slug)
+        $identifier = strtolower(trim($request->input('nama'))) . '|' . $request->input('slug');
 
         // Check if RSVP already exists
         $existing = Rsvp::where('identifier', $identifier)->first();
@@ -142,8 +140,10 @@ class KadKahwinController extends Controller
 
         $rsvp = new Rsvp();
         $rsvp->nama = $request->input('nama');
-        $rsvp->jumlah = $request->input('jumlah');
-        $rsvp->email = $request->input('email');
+        $rsvp->kehadiran = $request->input('kehadiran') === 'hadir';
+        $rsvp->jumlah = $request->input('kehadiran') === 'hadir'
+            ? ($request->input('jumlah') ?? 0)
+            : 0;
         $rsvp->slug = $request->input('slug');
         $rsvp->identifier = $identifier;
         $rsvp->save();

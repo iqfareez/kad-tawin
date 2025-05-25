@@ -35,6 +35,11 @@ class RsvpResource extends Resource
                 Tables\Columns\TextColumn::make('nama')
                     ->label('Nama')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('kehadiran')
+                    ->label('Kehadiran')
+                    ->formatStateUsing(fn($state) => $state ? 'Hadir' : 'Tidak Hadir')
+                    ->badge()
+                    ->color(fn($state) => $state ? 'success' : 'danger'),
                 Tables\Columns\TextColumn::make('jumlah')
                     ->label('Jumlah')
                     ->sortable(),
@@ -55,6 +60,12 @@ class RsvpResource extends Resource
                     ->options([
                         'najwa-fareez' => 'Kenduri Kedah',
                         'fareez-najwa' => 'Kenduri KL',
+                    ]),
+                Tables\Filters\SelectFilter::make('kehadiran')
+                    ->label('Kehadiran')
+                    ->options([
+                        true => 'Hadir',
+                        false => 'Tidak Hadir',
                     ]),
             ])
             ->actions([

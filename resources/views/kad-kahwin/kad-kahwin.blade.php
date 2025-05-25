@@ -432,6 +432,14 @@
                         autocomplete="name">
                 </div>
                 <div>
+                    <label class="block font-figtree mb-1">Kehadiran <span class="text-pink-500">*</span></label>
+                    <select name="kehadiran" id="kehadiranSelect" class="border rounded px-3 py-2 w-full font-figtree"
+                        required>
+                        <option value="hadir" selected>Hadir</option>
+                        <option value="tidak_hadir">Tidak Hadir</option>
+                    </select>
+                </div>
+                <div id="jumlahKehadiranDiv" style="display:block;">
                     <label class="block font-figtree mb-1">Jumlah Kehadiran <span class="text-pink-500">*</span></label>
                     <select name="jumlah" class="border rounded px-3 py-2 w-full font-figtree" required>
                         @for ($i = 1; $i <= 10; $i++)
@@ -439,16 +447,29 @@
                         @endfor
                     </select>
                 </div>
-                <div>
-                    <label class="block font-figtree mb-1">Email (pilihan)</label>
-                    <input type="email" name="email" class="border rounded px-3 py-2 w-full font-figtree"
-                        placeholder="Untuk jemputan digital">
-                </div>
                 <button type="submit"
                     class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded shadow font-figtree transition-colors duration-200">
                     Hantar RSVP
                 </button>
             </form>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const kehadiranSelect = document.getElementById('kehadiranSelect');
+                    const jumlahDiv = document.getElementById('jumlahKehadiranDiv');
+
+                    function toggleJumlah() {
+                        if (kehadiranSelect.value === 'hadir') {
+                            jumlahDiv.style.display = '';
+                            jumlahDiv.querySelector('select').setAttribute('required', 'required');
+                        } else {
+                            jumlahDiv.style.display = 'none';
+                            jumlahDiv.querySelector('select').removeAttribute('required');
+                        }
+                    }
+                    kehadiranSelect.addEventListener('change', toggleJumlah);
+                    toggleJumlah(); // set on load
+                });
+            </script>
         </div>
     </div>
 @endsection
