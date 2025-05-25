@@ -44,6 +44,14 @@ php artisan make:filament-user
 
 Check out https://www.cloudpanel.io/. You'll need a server, and a domain.
 
+For deploying on production, setup required requirement from Filament: https://filamentphp.com/docs/2.x/admin/users#authorizing-access-to-the-admin-panel
+
+Also, if you're logging in to Filament, but it throws you error Method not supported. Try running this:
+
+```bash
+php artisan vendor:publish --force --tag=livewire:assets
+```
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
