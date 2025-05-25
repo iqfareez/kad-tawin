@@ -653,14 +653,12 @@
                     });
                     const result = await res.json();
                     if (result.success) {
-                        // Set calendar links
-                        // TODO: Make the calendar link work
                         await Swal.fire({
                             icon: 'success',
-                            title: 'Terima kasih! Anda telah RSVP.',
+                            title: 'Terima kasih! Anda berjaya RSVP.',
                             html: `<div class='flex flex-col md:flex-row items-center justify-center gap-2 mt-4'>
-                                <a id='swalAppleCal' href='#' class='bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded font-figtree text-sm mb-2 md:mb-0' target='_blank'>Add to Apple Calendar</a>
-                                <a id='swalGoogleCal' href='#' class='bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded font-figtree text-sm' target='_blank'>Add to Google Calendar</a>
+                                <a id='swalGoogleCal' href='{{ route('calendar.google', $majlisDetail->slug) }}' class='bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded font-figtree text-sm' target='_blank'>Add to Google Calendar</a>
+                                <a id='swalAppleCal' href='{{ route('calendar.ics', $majlisDetail->slug) }}' class='bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-2 rounded font-figtree text-sm mb-2 md:mb-0' target='_blank'>Download ICS</a>
                             </div>`,
                             showConfirmButton: false,
                             allowOutsideClick: true,
