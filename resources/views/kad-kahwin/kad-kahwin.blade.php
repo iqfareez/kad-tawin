@@ -363,12 +363,21 @@
                 {!! nl2br(e($majlisDetail->venue_address_line_2)) !!}<br>
             </div>
             <div class="flex gap-4 justify-center">
-                <a href="{{ $majlisDetail->venue_google_maps_url }}"
-                    class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
-                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps"
-                        class="w-5 h-5 object-contain">
-                    Google Maps
-                </a>
+                @if (isset($majlisDetail->venue_google_maps_url))
+                    <a href="{{ $majlisDetail->venue_google_maps_url }}"
+                        class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
+                        <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps"
+                            class="w-5 h-5 object-contain">
+                        Google Maps
+                    </a>
+                @endif
+                @if (isset($majlisDetail->config_show_rsvp))
+                    <a href="{{ $majlisDetail->config_show_rsvp }}"
+                        class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
+                        <img src="{{ asset('images/waze-icon.png') }}" alt="Waze logo" class="w-5 h-5 object-contain">
+                        Waze
+                    </a>
+                @endif
             </div>
         </section>
 
