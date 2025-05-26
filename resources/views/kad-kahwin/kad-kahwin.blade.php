@@ -349,13 +349,15 @@
                             class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">ICS (Download)</a>
                     </div>
                 </div>
-                <div class="flex gap-4 justify-center mt-4">
-                    <button id="rsvpBtn" type="button"
-                        class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded shadow transition-colors duration-200">
-                        <x-heroicon-s-calendar-date-range class="w-5 h-5" />
-                        <span id="rsvpBtnText">RSVP</span>
-                    </button>
-                </div>
+                @if (isset($majlisDetail->config_show_rsvp))
+                    <div class="flex gap-4 justify-center mt-4">
+                        <button id="rsvpBtn" type="button"
+                            class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded shadow transition-colors duration-200">
+                            <x-heroicon-s-calendar-date-range class="w-5 h-5" />
+                            <span id="rsvpBtnText">RSVP</span>
+                        </button>
+                    </div>
+                @endif
             </div>
             <div class="text-2xl font-semibold text-pink-700 mb-2 mt-8">Alamat</div>
             <div class="text-gray-800 font-figtree mb-3 text-center">
@@ -371,8 +373,8 @@
                         Google Maps
                     </a>
                 @endif
-                @if (isset($majlisDetail->config_show_rsvp))
-                    <a href="{{ $majlisDetail->config_show_rsvp }}"
+                @if (isset($majlisDetail->venue_waze_url))
+                    <a href="{{ $majlisDetail->venue_waze_url }}"
                         class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
                         <img src="{{ asset('images/waze-icon.png') }}" alt="Waze logo" class="w-5 h-5 object-contain">
                         Waze
