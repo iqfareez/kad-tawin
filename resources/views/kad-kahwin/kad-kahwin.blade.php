@@ -307,7 +307,7 @@
                 {{ $majlisDetail->ibu_name }}
             </div>
             <div class="text-center text-xl text-gray-700 mt-4 mb-4">
-                menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan
+                menjemput Tuan/Puan/Encik/Cik sekeluarga ke majlis perkahwinan
                 {{ $majlisDetail->pengantin_lelaki_first ? 'Putera' : 'Puteri' }} kami
             </div>
             @if ($majlisDetail->pengantin_lelaki_first)
