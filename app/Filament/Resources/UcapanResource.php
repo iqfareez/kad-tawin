@@ -37,6 +37,7 @@ class UcapanResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ucapan')
                     ->label('Ucapan')
+                    ->wrap()
                     ->columnSpanFull(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime('d/m/Y h:i A')
@@ -52,6 +53,7 @@ class UcapanResource extends Resource
                         'fareez-najwa' => 'Kenduri KL',
                     ]),
             ])
+            ->defaultSort('created_at', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

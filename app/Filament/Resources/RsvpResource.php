@@ -68,6 +68,7 @@ class RsvpResource extends Resource
                         false => 'Tidak Hadir',
                     ]),
             ])
+            ->defaultSort('created_at', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
