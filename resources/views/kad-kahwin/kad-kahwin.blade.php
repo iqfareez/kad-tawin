@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.kad')
 
 @section('head')
     <meta property="og:title" content="{!! $og['title'] !!}" />
@@ -300,12 +300,14 @@
             <div class="text-center font-figtree font-semibold text-gray-800 leading-tight text-lg md:text-xl">
                 {{ $majlisDetail->bapa_name }}
             </div>
-            <div class="text-center font-figtree font-semibold text-gray-800 my-0 leading-tight tex                menjemput Tuan/Puan/Encik/Cik sekeluarga ke majlis perkahwinan
-  <div class="text-center font-figtree font-semibold text-gray-800 leading-tight text-lg md:text-xl">
+            <div class="text-center font-figtree font-semibold text-gray-800 my-0 leading-tight text-lg md:text-xl">
+                &
+            </div>
+            <div class="text-center font-figtree font-semibold text-gray-800 leading-tight text-lg md:text-xl">
                 {{ $majlisDetail->ibu_name }}
             </div>
             <div class="text-center text-xl text-gray-700 mt-4 mb-4">
-                menjemput Tuan/Puan/Encik/Cik ke majlis perkahwinan
+                menjemput Tuan/Puan/Encik/Cik sekeluarga ke majlis perkahwinan
                 {{ $majlisDetail->pengantin_lelaki_first ? 'Putera' : 'Puteri' }} kami
             </div>
             @if ($majlisDetail->pengantin_lelaki_first)
@@ -342,39 +344,42 @@
                         <a href="{{ route('calendar.outlook', $majlisDetail->slug) }}" target="_blank"
                             class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">Outlook</a>
                         <a href="{{ route('calendar.yahoo', $majlisDetail->slug) }}" target="_blank"
-                              @if (isset($majlisDetail->config_show_rsvp))
-     
-            @endif               class="block px-4 py-2 ho   ver:bg-pink-50 hover :text-pink-700 transition">Yahoo</a   >
-                         <a href="{{ route('calendar.ics', $majlisDetail->slug) }}"
-                            class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">ICS (Dow  nload)</a>
-                      </div>
+                            class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">Yahoo</a>
+                        <a href="{{ route('calendar.ics', $majlisDetail->slug) }}"
+                            class="block px-4 py-2 hover:bg-pink-50 hover:text-pink-700 transition">ICS (Download)</a>
+                    </div>
                 </div>
-                  <div class="flex gap-  4 justify-center mt-4">
-                     <button id   ="rsvpBtn"     type="button"
-      
-               @endif                   class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded shadow transition-colors duration-200">
-                        <x-heroicon-s-calendar-date-range class="w-5 h-5" />
-                        <span id="rsvpBtnText">RSVP</span>
-                    </button>
-                </div>
+                @if (isset($majlisDetail->config_show_rsvp))
+                    <div class="flex gap-4 justify-center mt-4">
+                        <button id="rsvpBtn" type="button"
+                            class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded shadow transition-colors duration-200">
+                            <x-heroicon-s-calendar-date-range class="w-5 h-5" />
+                            <span id="rsvpBtnText">RSVP</span>
+                        </button>
+                    </div>
+                @endif
             </div>
-            <div class="text
-               @if (isset($majlisDetail->venu       
-e_goo                            <a href="{{ $majlisDetail->venu    e_ogle_maps_url }}"                    c  lass="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-c    ols duration-200">
-                      <img src="{{ asset('images/Google_Maps_icon.png')         }}="Google Maps"                      c   lass="w-5 h- object-contain">    
-                    Google     Ma                <   /a>
-                @if (isset($majlisDetaivenue_waze_urlrsvp
-    
- il->vvenue_waze_ur
-    class
-      venue_waze_urlrsvpuel"{ $majivenue_waze_url    _mapsrl }}"
-                       class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shad    ow trnsition-colors duratn-200">
-                       <img src="{{ asset('imagewaze-s_icon.png') }}" altWaze logop   class="w-5 h-5     objec    conta
-                             @endif                    @endif           </a> ="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
-                    <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps"
-                        class="w-5 h-5 object-contain">
-                    Google Maps
-                </a>
+            <div class="text-2xl font-semibold text-pink-700 mb-2 mt-8">Alamat</div>
+            <div class="text-gray-800 font-figtree mb-3 text-center">
+                <div class="font-medium">{{ $majlisDetail->venue_address_line_1 }}</div>
+                {!! nl2br(e($majlisDetail->venue_address_line_2)) !!}<br>
+            </div>
+            <div class="flex gap-4 justify-center">
+                @if (isset($majlisDetail->venue_google_maps_url))
+                    <a href="{{ $majlisDetail->venue_google_maps_url }}"
+                        class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
+                        <img src="{{ asset('images/Google_Maps_icon.png') }}" alt="Google Maps"
+                            class="w-5 h-5 object-contain">
+                        Google Maps
+                    </a>
+                @endif
+                @if (isset($majlisDetail->venue_waze_url))
+                    <a href="{{ $majlisDetail->venue_waze_url }}"
+                        class="flex font-inter text-sm items-center gap-2 border border-gray-400 bg-white hover:bg-gray-100 text-gray-800 px-4 py-2 rounded shadow transition-colors duration-200">
+                        <img src="{{ asset('images/waze-icon.png') }}" alt="Waze logo" class="w-5 h-5 object-contain">
+                        Waze
+                    </a>
+                @endif
             </div>
         </section>
 
