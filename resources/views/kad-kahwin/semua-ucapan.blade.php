@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.kad')
 
 @section('head')
     <meta property="og:title" content="Semua Ucapan - Fareez & Najwa" />
