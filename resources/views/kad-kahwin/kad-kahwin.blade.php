@@ -218,12 +218,13 @@
 @endsection
 
 @section('content')
-    <div class="min-h-screen flex flex-col items-center drop-shadow-md relative overflow-x-hidden bg-fixed font-['Dancing_Script','Inter','sans-serif'] 
-        @if ($majlisDetail->theme == 1) bg-gradient-to-br from-blue-100 to-white
-        @else
-            bg-gradient-to-br from-[#f7efe6] to-[#fff8ef] @endif
-        "
-        <!-- Hero Section -->
+    <div @class([
+        "min-h-screen flex flex-col items-center drop-shadow-md relative overflow-x-hidden bg-fixed font-['Dancing_Script','Inter','sans-serif']",
+        'bg-gradient-to-br from-blue-100 to-white' => $majlisDetail->theme == 1,
+        'bg-gradient-to-br from-[#f7efe6] to-[#fff8ef]' =>
+            $majlisDetail->theme != 1,
+    ])>
+        {{-- Hero Section --}}
         <section
             class="w-full flex flex-col items-center justify-center py-16 px-4 text-center min-h-[60vh] md:min-h-0 md:py-16 md:justify-center relative"
             style="min-height:100svh;">
@@ -267,7 +268,7 @@
                 </div>
             @endif
 
-            <!-- Hero Content -->
+            {{-- Hero Content --}}
             <div
                 class="text-sm md:text-xl tracking-widest uppercase text-gray-600 mb-10 dm-serif-text-regular hero-content">
                 {{ $majlisDetail->title ?: 'Undangan Perkahwinan' }}
@@ -291,7 +292,7 @@
             </div>
         </section>
 
-        <!-- Parents Invitation Section -->
+        {{-- Parents Invitation Section --}}
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 z-5 card-reveal">
             <div class="text-center aref-ruqaa-regular text-xl text-gray-700 mb-4">السلام عليكم ورحمة الله وبركاته</div>
             <div class="text-center text-xl text-gray-700 mb-2">
@@ -326,7 +327,7 @@
 
         </section>
 
-        <!-- Event Details Section -->
+        {{-- Event Details Section --}}
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-2">Tarikh & Masa</div>
             <div class="text-gray-800 font-figtree font-medium mb-1">
@@ -383,11 +384,13 @@
             </div>
         </section>
 
-        <!-- Countdown Section -->
+        {{-- Countdown Section --}}
         <section class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-2">Countdown</div>
             <div id="countdown" class="text-2xl font-figtree text-gray-800 mb-4">Loading...</div>
-        </section> <!-- Ucapan Section -->
+        </section>
+
+        {{-- Ucapan Section --}}
         <section id="ucapan"
             class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-16 flex flex-col items-center relative z-10 card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-3">Ucapan</div>
@@ -404,7 +407,9 @@
                     <span class="button-text">Hantar Ucapan</span>
                     <span class="loading-text hidden">Menghantar...</span>
                 </button>
-            </form> <!-- Ucapan list with top 5 submissions -->
+            </form>
+
+            {{-- Top 5 ucapan --}}
             <div class="w-full mt-6" id="ucapanList">
                 @if ($ucapanList && $ucapanList->count() > 0)
                     @foreach ($ucapanList as $ucapan)
@@ -429,7 +434,7 @@
         </section>
     </div>
 
-    <!-- RSVP Modal -->
+    {{-- RSVP Modal --}}
     <div id="rsvpModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
         <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-md relative">
             <button id="closeRsvpModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">&times;</button>
