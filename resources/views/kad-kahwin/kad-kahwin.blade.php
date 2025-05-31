@@ -26,6 +26,7 @@
         rel="stylesheet">
     {{-- Aref Ruqaa --}}
     <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         h1,
         .font-dancing {

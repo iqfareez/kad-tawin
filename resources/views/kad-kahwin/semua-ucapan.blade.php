@@ -24,10 +24,18 @@
         rel="stylesheet">
     {{-- Aref Ruqaa --}}
     <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    {{-- Playfair --}}
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+
     <style>
         h1,
         .font-dancing {
             font-family: 'Dancing Script', cursive !important;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
         }
 
         body,
@@ -115,7 +123,7 @@
             <div class="max-w-4xl mx-auto px-4 py-4">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
-                        <a href="{{ route('kenduri.show', $slug) }}"
+                        <a href="{{ route('kenduri.show', $majlisDetail->slug) }}"
                             class="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 transition-colors duration-200">
                             <x-heroicon-o-arrow-left class="w-5 h-5" />
                             <span class="figtree-normal font-medium">Kembali</span>
@@ -135,7 +143,15 @@
             <!-- Hero Section -->
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2 dm-serif-text">Ucapan untuk</h2>
-                <h3 class="text-2xl md:text-3xl font-bold text-pink-600 mb-4 dm-serif-text">Fareez & Najwa</h3>
+                <h3 class="font-playfair text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    @if ($majlisDetail->pengantin_lelaki_first)
+                        {{ $majlisDetail->pengantin_lelaki_display_name }} &
+                        {{ $majlisDetail->pengantin_perempuan_display_name }}
+                    @else
+                        {{ $majlisDetail->pengantin_perempuan_display_name }} &
+                        {{ $majlisDetail->pengantin_lelaki_display_name }}
+                    @endif
+                </h3>
                 <p class="text-gray-600 figtree-normal">Terima kasih atas ucapan dan doa dari semua</p>
             </div>
 
@@ -170,7 +186,7 @@
                     </div>
                     <h3 class="text-xl font-semibold text-gray-600 mb-2 dm-serif-text">Belum ada ucapan</h3>
                     <p class="text-gray-500 figtree-normal mb-6">Jadilah yang pertama memberikan ucapan!</p>
-                    <a href="{{ route('kenduri.show') }}#ucapan"
+                    <a href="{{ route('kenduri.show', $majlisDetail->slug) }}#ucapan"
                         class="inline-flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg shadow-md transition-all duration-200 figtree-normal font-medium">
                         <x-heroicon-o-pencil class="w-4 h-4" />
                         Tulis Ucapan

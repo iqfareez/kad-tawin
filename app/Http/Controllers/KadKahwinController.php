@@ -47,6 +47,11 @@ class KadKahwinController extends Controller
         // Set Carbon locale to Malaysian
         Carbon::setLocale('ms');
 
+        $majlisDetail = MajlisDetail::where('slug', $slug)->first();
+        if (!$majlisDetail) {
+            abort(404, 'Wedding invitation not found');
+        }
+
         $ucapanList = \App\Models\Ucapan::where('from_form', $slug)
             ->latest()
             ->get()
@@ -58,7 +63,7 @@ class KadKahwinController extends Controller
                 ];
             });
 
-        return view('kad-kahwin.semua-ucapan', compact('ucapanList', 'slug'));
+        return view('kad-kahwin.semua-ucapan', compact('ucapanList', 'majlisDetail'));
     }
 
     /**
