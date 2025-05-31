@@ -7,21 +7,20 @@
 
     <title>Home - tawin.my</title>
     <meta name="title" content="Home - tawin.my" />
-    <meta name="description" content="Jana Kad kahwin digital anda sekarang! Percuma 100% (tempoh terhad)" />
+    <meta name="description" content="Jana Kad kahwin digital anda sekarang! Percuma 100%" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://metatags.io/" />
     <meta property="og:title" content="Home - tawin.my" />
-    <meta property="og:description" content="Jana Kad kahwin digital anda sekarang! Percuma 100% (tempoh terhad)" />
+    <meta property="og:description" content="Jana Kad kahwin digital anda sekarang! Percuma 100%" />
     <meta property="og:image" content="{{ asset('images/og-home.png') }}" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://metatags.io/" />
     <meta property="twitter:title" content="Home - tawin.my" />
-    <meta property="twitter:description"
-        content="Jana Kad kahwin digital anda sekarang! Percuma 100% (tempoh terhad)" />
+    <meta property="twitter:description" content="Jana Kad kahwin digital anda sekarang! Percuma 100%" />
     <meta property="twitter:image" content="{{ asset('images/og-home.png') }}" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -36,8 +35,6 @@
 
 </head>
 
-<body>
-    @yield('content')
-</body>
+@yield('body')
 
 </html>
