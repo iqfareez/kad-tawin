@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('head')
+@push('styles')
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -12,13 +10,9 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
         .glass-effect {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(100px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -72,73 +66,12 @@
         .neon-border {
             box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
         }
-
-        .metric-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
     </style>
-@endsection
+@endpush
 
-@section('body')
+<x-app-layout>
 
     <body class="font-inter text-gray-800 bg-gray-50">
-        <!-- Navigation -->
-        <nav class="bg-white/95 backdrop-blur-xl shadow-lg fixed w-full top-0 z-50 border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-20">
-                    <a href="/">
-                        <div class="flex items-center space-x-3">
-                            <div class="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-xl">
-                                <x-fas-heart class="w-5 h-5 text-white" aria-hidden="true" />
-
-                            </div>
-                            <div>
-                                <span class="font-playfair text-2xl font-bold text-gray-800">Tawin.my</span>
-                                <div class="text-xs text-purple-600 font-semibold">Kad Kahwin Digital</div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <div class="hidden lg:flex items-center space-x-8">
-                        <a href="#utama"
-                            class="text-gray-700 hover:text-purple-600 transition-colors font-medium">Utama</a>
-                        <a href="#ciri"
-                            class="text-gray-700 hover:text-purple-600 transition-colors font-medium">Ciri-ciri</a>
-                        <a href="#template"
-                            class="text-gray-700 hover:text-purple-600 transition-colors font-medium">Template</a>
-                        <a href="#harga"
-                            class="text-gray-700 hover:text-purple-600 transition-colors font-medium">Harga</a>
-                    </div>
-
-                    <div class="flex items-center space-x-4">
-                        <button class="hidden md:block text-gray-600 hover:text-purple-600 font-medium transition-colors">
-                            Log Masuk
-                        </button>
-                        <button class="lg:hidden text-gray-700" id="mobile-menu-btn" aria-label="Open mobile menu">
-                            <x-fas-bars class="w-5 h-5" />
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div class="lg:hidden bg-white border-t hidden" id="mobile-menu">
-                <div class="px-4 py-6 space-y-4">
-                    <a href="#utama" class="block text-gray-700 hover:text-purple-600 font-medium py-2">Utama</a>
-                    <a href="#template" class="block text-gray-700 hover:text-purple-600 font-medium py-2">Template</a>
-                    <a href="#ciri" class="block text-gray-700 hover:text-purple-600 font-medium py-2">Ciri-ciri</a>
-                    <a href="#harga" class="block text-gray-700 hover:text-purple-600 font-medium py-2">Harga</a>
-                    <a href="#hubungi" class="block text-gray-700 hover:text-purple-600 font-medium py-2">Hubungi</a>
-                    <div class="pt-4 border-t">
-                        <button class="block w-full text-left text-gray-600 hover:text-purple-600 font-medium py-2">
-                            Log Masuk
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </nav>
 
         <!-- Hero Section -->
         <section id="utama" class="bg-indigo-600 tech-grid pt-24 pb-20 px-4 relative overflow-hidden">
@@ -270,7 +203,8 @@
                             <x-fas-paint-brush class="text-white w-8 h-8" />
                         </div>
                         <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-4">Customization Mudah</h3>
-                        <p class="text-gray-600 mb-4">Edit warna, gambar, teks dan tema kad dengan beberapa klik sahaja.
+                        <p class="text-gray-600 mb-4">Edit warna, gambar, teks dan tema kad dengan beberapa klik
+                            sahaja.
                             Tiada kemahiran teknikal diperlukan.</p>
                     </div>
                     <!-- Ucapan & Doa -->
@@ -319,7 +253,8 @@
                                 <x-fas-heart class="w-10 h-10 text-rose-500" />
                             </div>
                             <h3 class="font-playfair text-xl font-bold mb-3 text-gray-800">Klasik Mewah</h3>
-                            <p class="text-sm text-gray-600 mb-4">Design tradisional dengan sentuhan moden dan elegant</p>
+                            <p class="text-sm text-gray-600 mb-4">Design tradisional dengan sentuhan moden dan elegant
+                            </p>
                         </div>
                     </div>
 
@@ -385,13 +320,16 @@
                         <ul class="space-y-4 mb-8">
                             <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Template
                                 Percuma</li>
-                            <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Admin Panel
+                            <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Admin
+                                Panel
                             </li>
-                            <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Kongsi via
+                            <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Kongsi
+                                via
                                 WhatsApp</li>
                             <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Unlimited
                                 RSVPs</li>
-                            <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Custom URL
+                            <li class="flex items-center"><x-fas-check class="text-green-500 mr-3 w-5 h-5" />Custom
+                                URL
                             </li>
                         </ul>
                         <a href="#"
@@ -421,13 +359,7 @@
                 <div class="grid md:grid-cols-5 gap-8 py-12">
                     <div class="md:col-span-2 space-y-6">
                         <div class="flex items-center space-x-3">
-                            <div class="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-xl">
-                                <x-fas-heart class="w-5 h-5" />
-                            </div>
-                            <div>
-                                <span class="font-playfair text-2xl font-bold">Tawin.my</span>
-                                <div class="text-xs text-purple-400 font-semibold">Kad Kahwin Digital</div>
-                            </div>
+                            <x-application-logo />
                         </div>
                         <p class="text-gray-400 max-w-md">
                             Platform digital untuk cipta kad jemputan perkahwinan yang mudah, moden dan boleh dikongsi.
@@ -451,30 +383,6 @@
         </footer>
 
         <script>
-            // Mobile menu toggle
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        // Close mobile menu if open
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-
             // Enhanced fade in animation on scroll
             const observerOptions = {
                 threshold: 0.15,
@@ -530,4 +438,4 @@
             });
         </script>
     </body>
-@endsection
+</x-app-layout>

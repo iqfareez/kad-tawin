@@ -1,5 +1,8 @@
 import './bootstrap';
-import Swal from 'sweetalert2';
 
-// Make SweetAlert2 globally available
-window.Swal = Swal;
+import Alpine from 'alpinejs';
+
+// Make Alpine globally available
+window.Alpine = Alpine;
+
+Alpine.start();
