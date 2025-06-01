@@ -439,7 +439,11 @@
                 <div class="border-t border-gray-800 py-4">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <p class="text-sm text-gray-400 mb-4 md:mb-0">
-                            &copy; 2025 Muhammad Fareez. Hak Cipta Terpelihara.
+                            &copy; 2025 <a href="https://iqfareez.com" {{-- 'fancy' underline animation --}}
+                                class="relative after:bg-gray-400 after:absolute after:h-px after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer">Muhammad
+                                Fareez</a>.
+                            Hak
+                            Cipta Terpelihara.
                         </p>
                     </div>
                 </div>
