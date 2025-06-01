@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\UcapanResource\Pages;
+namespace App\Filament\Admin\Resources\UcapanResource\Pages;
 
-use App\Filament\Resources\UcapanResource;
+use App\Filament\Admin\Resources\UcapanResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 

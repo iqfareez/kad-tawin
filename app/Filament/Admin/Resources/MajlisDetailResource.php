@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Admin\Resources;
 
-use App\Filament\Resources\MajlisDetailResource\Pages;
-use App\Filament\Resources\MajlisDetailResource\RelationManagers;
+use App\Filament\Admin\Resources\MajlisDetailResource\Pages;
+use App\Filament\Admin\Resources\MajlisDetailResource\RelationManagers;
 use App\Models\MajlisDetail;
 use Filament\Forms;
 use Filament\Forms\Form;

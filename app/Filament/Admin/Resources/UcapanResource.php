@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Admin\Resources;
 
-use App\Filament\Resources\UcapanResource\Pages;
-use App\Filament\Resources\UcapanResource\RelationManagers;
+use App\Filament\Admin\Resources\UcapanResource\Pages;
+use App\Filament\Admin\Resources\UcapanResource\RelationManagers;
 use App\Models\Ucapan;
 use Filament\Forms;
 use Filament\Forms\Form;
