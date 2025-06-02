@@ -74,15 +74,27 @@
     <body class="font-inter text-gray-800 bg-gray-50">
 
         <!-- Hero Section -->
-        <section id="utama" class="bg-indigo-600 tech-grid pt-24 pb-20 px-4 relative overflow-hidden">
+        <section id="utama" class="bg-indigo-600 tech-grid pt-12 pb-12 px-4 relative overflow-hidden">
             <div class="absolute inset-0 bg-black/10"></div>
             <div class="max-w-7xl mx-auto relative z-10">
+                <div class="relative">
+                    {{-- logo --}}
+                    <div class="text-left">
+                        <span class="font-playfair text-2xl lg:text-4xl font-bold text-gray-100 dark:text-gray-80">
+                            Tawin.my
+                        </span>
+                        <div class="text-sm lg:text-md font-semibold text-purple-400 dark:text-purple-60">
+                            Kad Kahwin Digital
+                        </div>
+                    </div>
+                </div>
                 <div class="grid lg:grid-cols-2 gap-16 items-center min-h-[85vh]">
                     <div class="space-y-8 fade-in">
                         <div class="space-y-6">
                             <h1 class="font-playfair text-5xl md:text-7xl font-bold text-white leading-tight">
                                 Cipta Kad Kahwin
-                                <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
+                                <span
+                                    class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
                                     Digital Terbaik
                                 </span>
                             </h1>
@@ -93,7 +105,7 @@
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#"
+                            <a href="{{ route('filament.admin.pages.dashboard') }}"
                                 class="flex items-center bg-white text-purple-600 px-8 py-4 rounded-xl hover:bg-gray-100 transition-all font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 neon-border">
                                 <x-fas-wand-magic-sparkles class="mr-2 w-5 h-5" />
                                 <span>Cipta Kad</span>
@@ -115,15 +127,17 @@
                                         <x-fas-heart class="w-6 h-6 text-white" />
                                     </div>
                                     <div>
-                                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-2">Ahmad & Siti
-                                            Nurhaliza</h3>
+                                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-2">Ahmad & Nora
+                                        </h3>
                                         <p class="text-gray-600">Dengan segala hormat, kami menjemput</p>
                                         <p class="text-gray-600">Datuk/Datin/Tuan/Puan</p>
                                         <p class="text-gray-600">ke majlis perkahwinan kami</p>
                                     </div>
                                     <div
                                         class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-2xl border border-purple-200">
-                                        <p class="font-bold text-xl text-gray-800">15 Disember 2024</p>
+                                        <p class="font-bold text-xl text-gray-800">
+                                            {{ \Carbon\Carbon::now()->locale('ms_MY')->isoFormat('D MMMM YYYY') }}
+                                        </p>
                                         <p class="text-gray-600 mt-1">Dewan Serbaguna Putrajaya</p>
                                         <p class="text-sm text-purple-600 mt-2">12:00 PM - 4:00 PM</p>
                                     </div>
@@ -359,7 +373,14 @@
                 <div class="grid md:grid-cols-5 gap-8 py-12">
                     <div class="md:col-span-2 space-y-6">
                         <div class="flex items-center space-x-3">
-                            <x-application-logo />
+                            <div class="text-left">
+                                <span class="font-playfair text-2xl font-bold text-gray-100">
+                                    Tawin.my
+                                </span>
+                                <div class="text-xs font-semibold text-purple-400">
+                                    Kad Kahwin Digital
+                                </div>
+                            </div>
                         </div>
                         <p class="text-gray-400 max-w-md">
                             Platform digital untuk cipta kad jemputan perkahwinan yang mudah, moden dan boleh dikongsi.
