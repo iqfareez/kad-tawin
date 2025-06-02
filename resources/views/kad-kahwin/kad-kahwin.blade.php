@@ -16,16 +16,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    {{-- DM Serif Text --}}
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
-    {{-- Dancing Script, Inter --}}
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;600&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=DM+Serif+Text:ital@0;1&family=Dancing+Script:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap"
         rel="stylesheet">
-    {{-- Figtree --}}
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
-    {{-- Aref Ruqaa --}}
-    <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         h1,
@@ -40,6 +33,10 @@
 
         .dm-serif-text {
             font-family: "DM Serif Text", serif;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
         }
 
         .dm-serif-text-regular {
@@ -393,7 +390,7 @@
 
         {{-- Ucapan Section --}}
         <section id="ucapan"
-            class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-16 flex flex-col items-center relative z-10 card-reveal">
+            class="w-full max-w-xl bg-white/80 rounded-xl shadow-lg p-6 mb-8 flex flex-col items-center relative z-10 card-reveal">
             <div class="text-2xl font-semibold text-pink-700 mb-3">Ucapan</div>
             <form id="ucapanForm" class="w-full flex flex-col gap-3" action="{{ route('hantar_ucapan.store') }}"
                 method="POST">
@@ -433,6 +430,12 @@
                 @endif
             </div>
         </section>
+
+        {{-- tawin logo --}}
+        <a href="/" class="text-center py-12">
+            <div class="font-figtree text-xs text-gray-500/30 font-semibold">Made with</div>
+            <span class="font-playfair text-xl lg:text-3xl font-bold text-gray-600/30">Tawin.my</span>
+        </a>
     </div>
 
     {{-- RSVP Modal --}}
