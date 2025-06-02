@@ -3,11 +3,11 @@
     scrolled: false,
     init() {
         window.addEventListener('scroll', () => {
-            this.scrolled = window.scrollY > 10;
+            this.scrolled = window.scrollY > window.innerHeight;
         });
     }
-}" :class="scrolled ? 'h-12' : 'h-16'"
-    class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200/20 dark:border-gray-700/20 shadow-sm transition-all duration-300 ease-in-out">
+}" :class="scrolled ? 'block' : 'hidden'"
+    class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b h-16 bg-white/80 dark:bg-gray-900/80 border-gray-200/20 dark:border-gray-700/20 shadow-sm transition-all duration-300 ease-in-out">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div class="flex justify-between h-full items-center">
@@ -15,8 +15,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('filament.admin.pages.dashboard') }}">
-                        <x-application-logo :class="scrolled ? 'h-6 w-auto' : 'h-9 w-auto'"
-                            class="block fill-current text-gray-800 dark:text-white transition-all duration-300 ease-in-out" />
+                        <x-application-logo class="block fill-current" />
                     </a>
                 </div>
             </div>
@@ -24,9 +23,11 @@
             @if (Auth::check())
                 <!-- Settings Dropdown Authenticated -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">
-                    <div :class="scrolled ? 'text-sm' : 'text-base'"
-                        class="text-gray-700 dark:text-gray-200 font-medium transition-all duration-300 ease-in-out">
-                        {{ Auth::user()->name }}</div>
+                    <a href="{{ route('filament.admin.pages.dashboard') }}"
+                        class="flex items-center text-gray-700 dark:text-gray-200 font-medium transition-all duration-300 ease-in-out space-x-2">
+                        <x-heroicon-o-user class="h-5 w-5" />
+                        <span>{{ Auth::user()->name }}</span>
+                    </a>
                 </div>
             @else
                 <!-- Settings Dropdown NOT Authenticated -->
@@ -34,7 +35,7 @@
                     <a :class="scrolled ? 'text-sm px-3 py-1.5' : 'text-base px-4 py-2'"
                         class="text-gray-700 dark:text-gray-200 font-medium transition-all duration-300 ease-in-out rounded-md hover:bg-gray-100/70 dark:hover:bg-gray-800/70 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         style="transition-property: background-color, color, transform;" href="{{ route('register') }}">
-                        Get Started
+                        Buat Kad
                     </a>
                 </div>
             @endif
