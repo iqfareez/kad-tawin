@@ -105,15 +105,15 @@
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="{{ route('filament.admin.pages.dashboard') }}"
+                            <a href="#coming-soon"
                                 class="flex items-center bg-white text-purple-600 px-8 py-4 rounded-xl hover:bg-gray-100 transition-all font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 neon-border">
                                 <x-fas-wand-magic-sparkles class="mr-2 w-5 h-5" />
                                 <span>Cipta Kad</span>
                             </a>
-                            <a href="#"
+                            <button onclick="alert('Demo akan datang!')"
                                 class="flex items-center glass-effect text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-all font-semibold text-lg border border-white/30 hover:shadow-2xl transform hover:scale-105">
                                 <span>Demo</span>
-                            </a>
+                            </button>
                         </div>
                     </div>
 
@@ -167,7 +167,7 @@
                         Kenapa Pilih Tawin.my?
                     </div>
                     <h2 class="font-playfair text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-                        Ciri-ciri Utama Platform Kami
+                        Ciri Utama Platform Kami
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                         Direka khas untuk memudahkan anda cipta kad jemputan digital yang moden, interaktif dan mesra
@@ -195,8 +195,7 @@
                             <x-fas-envelope-open-text class="text-white w-8 h-8" />
                         </div>
                         <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-4">Fungsi RSVP</h3>
-                        <p class="text-gray-600 mb-4">Tetamu boleh sahkan kehadiran secara digital. Statistik RSVP
-                            dipaparkan secara masa nyata.</p>
+                        <p class="text-gray-600 mb-4">Tetamu boleh sahkan kehadiran secara digital.</p>
                     </div>
                     <!-- Admin Panel -->
                     <div
@@ -249,8 +248,8 @@
                         Template Profesional & Eksklusif
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                        Pilihan template premium yang direka khas oleh designer profesional.
-                        Setiap template boleh disesuaikan sepenuhnya mengikut citarasa anda.
+                        Beberapa pilihan template desediakan mengikut tema. Setiap template boleh disesuaikan sepenuhnya
+                        mengikut citarasa anda.
                     </p>
                 </div>
 
@@ -346,7 +345,7 @@
                                 URL
                             </li>
                         </ul>
-                        <a href="#"
+                        <a href="#coming-soon"
                             class="w-full bg-gray-200 text-gray-800 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors flex items-center justify-center text-center">
                             Mula Percuma
                         </a>
@@ -362,6 +361,34 @@
                         <span
                             class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">Akan
                             Datang (maybe)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon Section -->
+        <section id="coming-soon"
+            class="py-24 bg-gradient-to-br from-indigo-600 to-purple-700 overflow-hidden relative">
+            <div class="absolute inset-0 tech-grid opacity-20"></div>
+            <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+                <div class="space-y-8 fade-in">
+                    <div class="transform rotate-12 mb-8">
+                        <h2 class="font-playfair text-6xl md:text-8xl font-bold text-white leading-none">
+                            COMING
+                        </h2>
+                        <h2
+                            class="font-playfair text-6xl md:text-8xl font-bold bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent leading-none">
+                            SOON
+                        </h2>
+                    </div>
+                    <p class="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
+                        Platform kami sedang dalam pembangunan. Datang balik nanti!
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div
+                            class="glass-effect text-white px-8 py-4 rounded-xl font-semibold text-lg border border-white/30">
+                            👨‍🍳 Let me cook
+                        </div>
                     </div>
                 </div>
             </div>
@@ -424,6 +451,20 @@
             // Observe all fade-in elements
             document.querySelectorAll('.fade-in').forEach(el => {
                 observer.observe(el);
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
             });
 
             // Initial animation for hero section

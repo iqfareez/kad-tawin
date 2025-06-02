@@ -19,6 +19,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
+        // TODO: Temporarily disable registration
+        abort(403, 'Registration is currently disabled.');
         return view('auth.register');
     }
 
@@ -29,9 +31,11 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // TODO: Temporarily disable registration
+        abort(403, 'Registration is currently disabled.');
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
