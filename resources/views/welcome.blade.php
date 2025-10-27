@@ -58,13 +58,14 @@
 
         .tech-grid {
             background-image:
-                linear-gradient(rgba(255, 255, 255, .1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, .1) 1px, transparent 1px);
-            background-size: 50px 50px;
+                linear-gradient(to bottom right, #fce7f3, #f3e8ff, #dbeafe),
+                linear-gradient(rgba(147, 51, 234, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(147, 51, 234, .08) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
         }
 
         .neon-border {
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
         }
     </style>
 @endpush
@@ -74,16 +75,17 @@
     <body class="font-inter text-gray-800 bg-gray-50">
 
         <!-- Hero Section -->
-        <section id="utama" class="bg-indigo-600 tech-grid pt-12 pb-12 px-4 relative overflow-hidden">
-            <div class="absolute inset-0 bg-black/10"></div>
+        <section id="utama"
+            class="bg-linear-to-br from-pink-100 via-purple-50 to-blue-100 tech-grid pt-12 pb-12 px-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-white/20"></div>
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="relative">
                     {{-- logo --}}
                     <div class="text-left">
-                        <span class="font-playfair text-2xl lg:text-4xl font-bold text-gray-100 dark:text-gray-80">
+                        <span class="font-playfair text-2xl lg:text-4xl font-bold text-gray-800 dark:text-gray-700">
                             Tawin.my
                         </span>
-                        <div class="text-sm lg:text-md font-semibold text-purple-400 dark:text-purple-60">
+                        <div class="text-sm lg:text-md font-semibold text-purple-600 dark:text-purple-500">
                             Kad Kahwin Digital
                         </div>
                     </div>
@@ -91,14 +93,13 @@
                 <div class="grid lg:grid-cols-2 gap-16 items-center min-h-[85vh]">
                     <div class="space-y-8 fade-in">
                         <div class="space-y-6">
-                            <h1 class="font-playfair text-5xl md:text-7xl font-bold text-white leading-tight">
+                            <h1 class="font-playfair text-5xl md:text-7xl font-bold text-gray-800 leading-tight">
                                 Cipta Kad Kahwin
-                                <span
-                                    class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
+                                <span class="bg-linear-to-r from-rose-400 to-pink-400 bg-clip-text text-transparent">
                                     Digital Terbaik
                                 </span>
                             </h1>
-                            <p class="text-xl md:text-2xl text-white/90 leading-relaxed max-w-xl">
+                            <p class="text-xl md:text-2xl text-gray-700 leading-relaxed max-w-xl">
                                 Cipta kad jemputan digital yang cantik, mudah dikongsi, dan boleh di-<i>customize</i>.
                                 Termasuk fungsi RSVP & Ucapan.
                             </p>
@@ -106,12 +107,12 @@
 
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="#coming-soon"
-                                class="flex items-center bg-white text-purple-600 px-8 py-4 rounded-xl hover:bg-gray-100 transition-all font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 neon-border">
+                                class="flex items-center bg-purple-500 text-white px-8 py-4 rounded-xl hover:bg-purple-600 transition-all font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 neon-border">
                                 <x-fas-wand-magic-sparkles class="mr-2 w-5 h-5" />
                                 <span>Cipta Kad</span>
                             </a>
                             <button onclick="alert('Demo akan datang!')"
-                                class="flex items-center glass-effect text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-all font-semibold text-lg border border-white/30 hover:shadow-2xl transform hover:scale-105">
+                                class="flex items-center bg-white/60 backdrop-blur-sm text-gray-700 px-8 py-4 rounded-xl hover:bg-white/80 transition-all font-semibold text-lg border border-gray-200 hover:shadow-2xl transform hover:scale-105">
                                 <span>Demo</span>
                             </button>
                         </div>
@@ -123,7 +124,7 @@
                                 class="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 transform rotate-2 neon-border">
                                 <div class="text-center space-y-6">
                                     <div
-                                        class="bg-gradient-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                                        class="bg-linear-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
                                         <x-fas-heart class="w-6 h-6 text-white" />
                                     </div>
                                     <div>
@@ -134,7 +135,7 @@
                                         <p class="text-gray-600">ke majlis perkahwinan kami</p>
                                     </div>
                                     <div
-                                        class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-2xl border border-purple-200">
+                                        class="bg-linear-to-r from-purple-50 to-blue-50 p-6 rounded-2xl border border-purple-200">
                                         <p class="font-bold text-xl text-gray-800">
                                             {{ \Carbon\Carbon::now()->locale('ms_MY')->isoFormat('D MMMM YYYY') }}
                                         </p>
@@ -144,7 +145,7 @@
                                 </div>
                             </div>
                             <div
-                                class="absolute -bottom-6 -right-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-3xl shadow-xl p-6 transform -rotate-6">
+                                class="absolute -bottom-6 -right-6 bg-linear-to-r from-yellow-400 to-orange-400 rounded-3xl shadow-xl p-6 transform -rotate-6">
                                 <div class="text-center space-y-2 text-white">
                                     {{-- <div class="text-2xl">🚀</div> --}}
                                     <h4 class="font-bold">Contoh</h4>
@@ -175,62 +176,70 @@
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Mobile First -->
-                    <div
-                        class="bg-gradient-to-br from-pink-50 to-rose-50 p-8 rounded-3xl card-hover border border-pink-100">
-                        <div
-                            class="bg-gradient-to-r from-pink-500 to-rose-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                            <x-fas-mobile-alt class="text-white w-8 h-8" />
-                        </div>
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-4">Mobile First</h3>
-                        <p class="text-gray-600 mb-4">Reka bentuk responsif dan pantas untuk semua peranti. Pengalaman
-                            terbaik di telefon, tablet & desktop.</p>
-                    </div>
-                    <!-- Fungsi RSVP -->
-                    <div
-                        class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-3xl card-hover border border-green-100">
-                        <div
-                            class="bg-gradient-to-r from-green-500 to-emerald-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                            <x-fas-envelope-open-text class="text-white w-8 h-8" />
-                        </div>
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-4">Fungsi RSVP</h3>
-                        <p class="text-gray-600 mb-4">Tetamu boleh sahkan kehadiran secara digital.</p>
-                    </div>
-                    <!-- Admin Panel -->
-                    <div
-                        class="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-3xl card-hover border border-indigo-100">
-                        <div
-                            class="bg-gradient-to-r from-indigo-500 to-purple-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                            <x-fas-user-cog class="text-white w-8 h-8" />
-                        </div>
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-4">Admin Panel</h3>
-                        <p class="text-gray-600 mb-4">Urus kad, tetamu, RSVP dan statistik dengan mudah melalui panel
-                            kawalan yang mesra pengguna.</p>
-                    </div>
-                    <!-- Customization Mudah -->
-                    <div
-                        class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-3xl card-hover border border-yellow-100">
-                        <div
-                            class="bg-gradient-to-r from-yellow-400 to-orange-400 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                            <x-fas-paint-brush class="text-white w-8 h-8" />
-                        </div>
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-4">Customization Mudah</h3>
-                        <p class="text-gray-600 mb-4">Edit warna, gambar, teks dan tema kad dengan beberapa klik
-                            sahaja.
-                            Tiada kemahiran teknikal diperlukan.</p>
-                    </div>
-                    <!-- Ucapan & Doa -->
-                    <div
-                        class="bg-gradient-to-br from-teal-50 to-cyan-50 p-8 rounded-3xl card-hover border border-teal-100">
-                        <div
-                            class="bg-gradient-to-r from-teal-500 to-cyan-500 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                            <x-fas-comments class="text-white w-8 h-8" />
-                        </div>
-                        <h3 class="font-playfair text-2xl font-bold text-gray-800 mb-4">Ucapan & Doa</h3>
-                        <p class="text-gray-600 mb-4">Tetamu boleh tinggalkan ucapan dan doa secara digital untuk
-                            memeriahkan majlis anda.</p>
-                    </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
+                    <x-welcome.feature-card>
+                        <x-slot:icon>
+                            <div class="w-12 h-12 rounded-lg bg-pink-100 flex items-center justify-center mb-6">
+                                <x-fas-mobile-alt class="w-6 h-6 text-pink-600" />
+                            </div>
+                        </x-slot:icon>
+                        <x-slot:title>
+                            Mobile First
+                        </x-slot:title>
+                        Reka bentuk responsif dan pantas untuk semua peranti. Pengalaman terbaik di telefon, tablet &
+                        desktop.
+                    </x-welcome.feature-card>
+
+                    <x-welcome.feature-card>
+                        <x-slot:icon>
+                            <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mb-6">
+                                <x-fas-envelope-open-text class="w-6 h-6 text-green-600" />
+                            </div>
+                        </x-slot:icon>
+                        <x-slot:title>
+                            Fungsi RSVP
+                        </x-slot:title>
+                        Tetamu boleh sahkan kehadiran secara digital.
+                    </x-welcome.feature-card>
+
+                    <x-welcome.feature-card>
+                        <x-slot:icon>
+                            <div class="w-12 h-12 rounded-lg bg-indigo-100 flex items-center justify-center mb-6">
+                                <x-fas-user-cog class="w-6 h-6 text-indigo-600" />
+                            </div>
+                        </x-slot:icon>
+                        <x-slot:title>
+                            Admin Panel
+                        </x-slot:title>
+                        Urus kad, tetamu, RSVP dan statistik dengan mudah melalui panel
+                        kawalan yang mesra pengguna.
+                    </x-welcome.feature-card>
+
+                    <x-welcome.feature-card>
+                        <x-slot:icon>
+                            <div class="w-12 h-12 rounded-lg bg-yellow-100 flex items-center justify-center mb-6">
+                                <x-fas-paint-brush class="w-6 h-6 text-yellow-600" />
+                            </div>
+                        </x-slot:icon>
+                        <x-slot:title>
+                            Customization Mudah
+                        </x-slot:title>
+                        Edit warna, gambar, teks dan tema kad dengan beberapa klik
+                        sahaja. Tiada kemahiran teknikal diperlukan.
+                    </x-welcome.feature-card>
+
+                    <x-welcome.feature-card>
+                        <x-slot:icon>
+                            <div class="w-12 h-12 rounded-lg bg-teal-100 flex items-center justify-center mb-6">
+                                <x-fas-comments class="w-6 h-6 text-teal-600" />
+                            </div>
+                        </x-slot:icon>
+                        <x-slot:title>
+                            Ucapan & Doa
+                        </x-slot:title>
+                        Tetamu boleh tinggalkan ucapan dan doa secara digital untuk
+                        memeriahkan majlis anda.
+                    </x-welcome.feature-card>
                 </div>
             </div>
         </section>
@@ -257,7 +266,7 @@
                     <!-- Template 1 -->
                     <div class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover fade-in">
                         <div
-                            class="bg-gradient-to-br from-rose-100 via-pink-50 to-purple-100 p-8 h-80 flex flex-col justify-center text-center relative">
+                            class="bg-linear-to-br from-rose-100 via-pink-50 to-purple-100 p-8 h-80 flex flex-col justify-center text-center relative">
                             <div
                                 class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
                                 POPULAR
@@ -274,7 +283,7 @@
                     <!-- Template 2 -->
                     <div class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover fade-in">
                         <div
-                            class="bg-gradient-to-br from-purple-100 via-indigo-50 to-blue-100 p-8 h-80 flex flex-col justify-center text-center relative">
+                            class="bg-linear-to-br from-purple-100 via-indigo-50 to-blue-100 p-8 h-80 flex flex-col justify-center text-center relative">
                             <div
                                 class="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                                 PREMIUM
@@ -290,7 +299,7 @@
                     <!-- Template 3 -->
                     <div class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover fade-in">
                         <div
-                            class="bg-gradient-to-br from-emerald-100 via-teal-50 to-cyan-100 p-8 h-80 flex flex-col justify-center text-center relative">
+                            class="bg-linear-to-br from-emerald-100 via-teal-50 to-cyan-100 p-8 h-80 flex flex-col justify-center text-center relative">
                             <div
                                 class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
                                 TRENDING
@@ -368,7 +377,7 @@
 
         <!-- Coming Soon Section -->
         <section id="coming-soon"
-            class="py-24 bg-gradient-to-br from-indigo-600 to-purple-700 overflow-hidden relative">
+            class="py-24 bg-linear-to-br from-indigo-600 to-purple-700 overflow-hidden relative">
             <div class="absolute inset-0 tech-grid opacity-20"></div>
             <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
                 <div class="space-y-8 fade-in">
@@ -377,7 +386,7 @@
                             COMING
                         </h2>
                         <h2
-                            class="font-playfair text-6xl md:text-8xl font-bold bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent leading-none">
+                            class="font-playfair text-6xl md:text-8xl font-bold bg-linear-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent leading-none">
                             SOON
                         </h2>
                     </div>
