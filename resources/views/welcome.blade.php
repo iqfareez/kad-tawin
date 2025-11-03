@@ -58,14 +58,14 @@
 
         .tech-grid {
             background-image:
-                linear-gradient(to bottom right, #fce7f3, #f3e8ff, #dbeafe),
-                linear-gradient(rgba(147, 51, 234, .08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(147, 51, 234, .08) 1px, transparent 1px);
+                linear-gradient(to bottom right, #fce7f3, #fed7aa, #ffedd5),
+                linear-gradient(rgba(194, 65, 12, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(194, 65, 12, .08) 1px, transparent 1px);
             background-size: 100% 100%, 50px 50px, 50px 50px;
         }
 
         .neon-border {
-            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+            box-shadow: 0 0 20px rgba(194, 65, 12, 0.3);
         }
     </style>
 @endpush
@@ -85,7 +85,7 @@
                         <span class="font-playfair text-2xl lg:text-4xl font-bold text-gray-800 dark:text-gray-700">
                             Tawin.my
                         </span>
-                        <div class="text-sm lg:text-md font-semibold text-purple-600 dark:text-purple-500">
+                        <div class="text-sm lg:text-md font-semibold text-orange-600 dark:text-orange-500">
                             Kad Kahwin Digital
                         </div>
                     </div>
@@ -107,12 +107,12 @@
 
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="#coming-soon"
-                                class="flex items-center bg-purple-500 text-white px-8 py-4 rounded-xl hover:bg-purple-600 transition-all font-bold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 neon-border">
+                                class="flex items-center bg-orange-600 text-white px-8 py-4 rounded-xl hover:bg-orange-700 transition-all font-bold text-lg hover:shadow-2xl transform hover:scale-105 neon-border">
                                 <x-fas-wand-magic-sparkles class="mr-2 w-5 h-5" />
                                 <span>Cipta Kad</span>
                             </a>
                             <button onclick="alert('Demo akan datang!')"
-                                class="flex items-center bg-white/60 backdrop-blur-sm text-gray-700 px-8 py-4 rounded-xl hover:bg-white/80 transition-all font-semibold text-lg border border-gray-200 hover:shadow-2xl transform hover:scale-105">
+                                class="flex items-center bg-white/60 backdrop-blur-sm text-gray-700 px-8 py-4 rounded-xl hover:bg-white/80 transition-all font-semibold text-lg border border-gray-200">
                                 <span>Demo</span>
                             </button>
                         </div>
@@ -124,7 +124,7 @@
                                 class="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 transform rotate-2 neon-border">
                                 <div class="text-center space-y-6">
                                     <div
-                                        class="bg-linear-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
+                                        class="bg-linear-to-r from-orange-600 to-amber-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto">
                                         <x-fas-heart class="w-6 h-6 text-white" />
                                     </div>
                                     <div>
@@ -135,12 +135,12 @@
                                         <p class="text-gray-600">ke majlis perkahwinan kami</p>
                                     </div>
                                     <div
-                                        class="bg-linear-to-r from-purple-50 to-blue-50 p-6 rounded-2xl border border-purple-200">
+                                        class="bg-linear-to-r from-orange-50 to-amber-50 p-6 rounded-2xl border border-orange-200">
                                         <p class="font-bold text-xl text-gray-800">
                                             {{ \Carbon\Carbon::now()->locale('ms_MY')->isoFormat('D MMMM YYYY') }}
                                         </p>
                                         <p class="text-gray-600 mt-1">Dewan Serbaguna Putrajaya</p>
-                                        <p class="text-sm text-purple-600 mt-2">12:00 PM - 4:00 PM</p>
+                                        <p class="text-sm text-orange-600 mt-2">12:00 PM - 4:00 PM</p>
                                     </div>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
             <div class="max-w-7xl mx-auto px-4">
                 <div class="text-center mb-20 fade-in">
                     <div
-                        class="inline-flex items-center bg-purple-100 text-purple-800 rounded-full px-4 py-2 text-sm font-semibold mb-6">
+                        class="inline-flex items-center bg-orange-100 text-orange-800 rounded-full px-4 py-2 text-sm font-semibold mb-6">
                         <x-fas-bolt class="mr-2 w-4 h-4" />
                         Kenapa Pilih Tawin.my?
                     </div>
@@ -283,13 +283,13 @@
                     <!-- Template 2 -->
                     <div class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover fade-in">
                         <div
-                            class="bg-linear-to-br from-purple-100 via-indigo-50 to-blue-100 p-8 h-80 flex flex-col justify-center text-center relative">
+                            class="bg-linear-to-br from-orange-100 via-amber-50 to-yellow-100 p-8 h-80 flex flex-col justify-center text-center relative">
                             <div
-                                class="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold">
                                 PREMIUM
                             </div>
                             <div class="font-playfair mb-4 flex justify-center">
-                                <x-fas-star class="w-10 h-10 text-purple-500" />
+                                <x-fas-star class="w-10 h-10 text-orange-600" />
                             </div>
                             <h3 class="font-playfair text-xl font-bold mb-3 text-gray-800">Bunga Sakura</h3>
                             <p class="text-sm text-gray-600 mb-4">Tema bunga dengan warna lembut dan romantic</p>
@@ -376,8 +376,7 @@
         </section>
 
         <!-- Coming Soon Section -->
-        <section id="coming-soon"
-            class="py-24 bg-linear-to-br from-indigo-600 to-purple-700 overflow-hidden relative">
+        <section id="coming-soon" class="py-24 bg-linear-to-br from-orange-600 to-amber-700 overflow-hidden relative">
             <div class="absolute inset-0 tech-grid opacity-20"></div>
             <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
                 <div class="space-y-8 fade-in">
@@ -413,7 +412,7 @@
                                 <span class="font-playfair text-2xl font-bold text-gray-100">
                                     Tawin.my
                                 </span>
-                                <div class="text-xs font-semibold text-purple-400">
+                                <div class="text-xs font-semibold text-orange-400">
                                     Kad Kahwin Digital
                                 </div>
                             </div>
