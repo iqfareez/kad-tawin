@@ -55,18 +55,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        .tech-grid {
-            background-image:
-                linear-gradient(to bottom right, #fce7f3, #fed7aa, #ffedd5),
-                linear-gradient(rgba(194, 65, 12, .08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(194, 65, 12, .08) 1px, transparent 1px);
-            background-size: 100% 100%, 50px 50px, 50px 50px;
-        }
-
-        .neon-border {
-            box-shadow: 0 0 20px rgba(194, 65, 12, 0.3);
-        }
     </style>
 @endpush
 
@@ -76,7 +64,7 @@
 
         <!-- Hero Section -->
         <section id="utama"
-            class="bg-linear-to-br from-pink-100 via-purple-50 to-blue-100 tech-grid pt-12 pb-12 px-4 relative overflow-hidden">
+            class="bg-linear-to-br from-pink-100 via-purple-50 to-blue-100 pt-12 pb-12 px-4 relative overflow-hidden">
             <div class="absolute inset-0 bg-white/20"></div>
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="relative">
@@ -107,7 +95,7 @@
 
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="#coming-soon"
-                                class="flex items-center bg-orange-600 text-white px-8 py-4 rounded-xl hover:bg-orange-700 transition-all font-bold text-lg hover:shadow-2xl transform hover:scale-105 neon-border">
+                                class="flex items-center bg-orange-600 text-white px-8 py-4 rounded-xl hover:bg-orange-700 transition-all font-bold text-lg hover:shadow-2xl transform hover:scale-105">
                                 <x-fas-wand-magic-sparkles class="mr-2 w-5 h-5" />
                                 <span>Cipta Kad</span>
                             </a>
@@ -377,7 +365,7 @@
 
         <!-- Coming Soon Section -->
         <section id="coming-soon" class="py-24 bg-linear-to-br from-orange-600 to-amber-700 overflow-hidden relative">
-            <div class="absolute inset-0 tech-grid opacity-20"></div>
+            <div class="absolute inset-0 opacity-20"></div>
             <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
                 <div class="space-y-8 fade-in">
                     <div class="transform rotate-12 mb-8">
