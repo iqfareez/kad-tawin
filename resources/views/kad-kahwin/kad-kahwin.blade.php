@@ -504,7 +504,15 @@
                 const now = new Date();
                 const diff = eventDate - now;
                 if (diff <= 0) {
-                    document.getElementById('countdown').textContent = 'Majlis sedang berlangsung!';
+                    const today = new Date().setHours(0, 0, 0, 0);
+                    const eventDay = new Date('{{ $majlisDetail->majlis_date->format('Y-m-d') }}').setHours(0, 0,
+                        0, 0);
+
+                    if (eventDay === today) {
+                        document.getElementById('countdown').textContent = 'Majlis sedang berlangsung';
+                    } else {
+                        document.getElementById('countdown').textContent = 'Majlis telah berlangsung';
+                    }
                     return;
                 }
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
